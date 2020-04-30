@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>Dev Cheat Sheet</title>
+<link href='style.css' rel='stylesheet'>
+<link href='//dash_ref/Category/Sublime Shortcuts/1'>
+<link href='//dash_ref_Sublime Shortcuts/Entry/Jump back to last cursor location/0'>
+<link href='//dash_ref_Sublime Shortcuts/Entry/Jump to a symbol across the project/0'>
+<link href='//dash_ref_Sublime Shortcuts/Entry/Jedi: Find uses/0'>
+<link href='//dash_ref_Sublime Shortcuts/Entry/Jedi: Show docstring/0'>
+<link href='//dash_ref_Sublime Shortcuts/Entry/Jedi: Goto definition/0'>
+<link href='//dash_ref_Sublime Shortcuts/Entry/SublimeLinter: Show errors/0'>
+<link href='//dash_ref/Category/Jupyter/1'>
+<link href='//dash_ref_Jupyter/Entry/Autoreloading of modules/0'>
+<link href='//dash_ref_Jupyter/Entry/Show all cell output/0'>
+<link href='//dash_ref/Category/Testing/1'>
+<link href='//dash_ref_Testing/Entry/Watch a test/0'>
+<link href='//dash_ref_Testing/Entry/Coverage Reporting/0'>
+<link href='//dash_ref/Category/Git/1'>
+<link href='//dash_ref_Git/Entry/Aliases/0'>
+<link href='//dash_ref_Git/Entry/Rebase on master/0'>
+<link href='//dash_ref_Git/Entry/Ignoring and Tracking files temporarily/0'>
+<link href='//dash_ref_Git/Entry/Last branch matching/0'>
+<link href='//dash_ref_Git/Entry/Commits across branches/0'>
+<link href='//dash_ref_Git/Entry/Find branch with last commit date/0'>
+<link href='//dash_ref/Category/PDB &amp; Debugging/1'>
+<link href='//dash_ref_PDB &amp; Debugging/Entry/Pretty print variable/0'>
+<link href='//dash_ref_PDB &amp; Debugging/Entry/Show arguments at this point/0'>
+</head>
+<body>
+<header>
+<h1>Dev Cheat Sheet</h1>
+</header>
+<article>
+<p><p>A cheat sheet of useful things I do for development and commands, shortcuts
+and so on to make use of over time.</p>
+
+<p>I have remapped some of the default keybindings that I use a lot which is
+partly why I̕ʾve created this. Any command starting with a <code>;</code> is typically
+a <a href="https://keyboardmaestro.com/">KeyboardMaestro</a> macro via a
+<a href="https://wiki.keyboardmaestro.com/trigger/Typed_String"><em>typed string trigger</em></a>.</p>
+</p>
+<section class='category'>
+<h2 id='//dash_ref/Category/Sublime Shortcuts/1'>
+Sublime Shortcuts
+</h2>
+<div class='scrollable'>
+<table>
+<tr id='//dash_ref_Sublime Shortcuts/Entry/Jump back to last cursor location/0'>
+<td class='command'>
+<p>
+<code>CTRL + -</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Jump back to last cursor location</p>
+</div>
+<div class='notes'></div>
+</td>
+</tr>
+<tr id='//dash_ref_Sublime Shortcuts/Entry/Jump to a symbol across the project/0'>
+<td class='command'>
+<p>
+<code>CMD + SHIFT + R</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Jump to a symbol across the project</p>
+</div>
+<div class='notes'></div>
+</td>
+</tr>
+<tr id='//dash_ref_Sublime Shortcuts/Entry/Jedi: Find uses/0'>
+<td class='command'>
+<p>
+<code>ALT + F</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p><strong>Jedi</strong>: Find uses</p>
+</div>
+<div class='notes'></div>
+</td>
+</tr>
+<tr id='//dash_ref_Sublime Shortcuts/Entry/Jedi: Show docstring/0'>
+<td class='command'>
+<p>
+<code>ALT + D</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p><strong>Jedi</strong>: Show docstring</p>
+</div>
+<div class='notes'></div>
+</td>
+</tr>
+<tr id='//dash_ref_Sublime Shortcuts/Entry/Jedi: Goto definition/0'>
+<td class='command'>
+<p>
+<code>ALT + G</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p><strong>Jedi</strong>: Goto definition</p>
+</div>
+<div class='notes'></div>
+</td>
+</tr>
+<tr id='//dash_ref_Sublime Shortcuts/Entry/SublimeLinter: Show errors/0'>
+<td class='command'>
+<p>
+<code>ALT + A</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p><strong>SublimeLinter</strong>: Show errors</p>
+</div>
+<div class='notes'></div>
+</td>
+</tr>
+</table>
+</div>
+</section>
+<section class='category'>
+<h2 id='//dash_ref/Category/Jupyter/1'>
+Jupyter
+</h2>
+<div class='scrollable'>
+<table>
+<tr id='//dash_ref_Jupyter/Entry/Autoreloading of modules/0'>
+<td class='command'>
+<p>
+<code>%autoreload</code>
+</p>
+<p>
+<code>;autoreload</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Autoreloading of modules</p>
+</div>
+<div class='notes'><p>The <a href="https://ipython.org/ipython-doc/stable/config/extensions/autoreload.html"><code>%autoreload</code> magic command</a>
+will reload modules once it&#39;s been loaded.
+I use the <code>;autoreload</code> macro to write out in any session:</p>
+<pre class="highlight python"><span class="o">%</span><span class="n">load_ext</span> <span class="n">autoreload</span>&#x000A;<span class="o">%</span><span class="n">autoreload</span> <span class="mi">2</span></pre></div>
+</td>
+</tr>
+<tr id='//dash_ref_Jupyter/Entry/Show all cell output/0'>
+<td class='command'>
+<p>
+<code>ast_node_interactivity</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Show all cell output</p>
+</div>
+<div class='notes'><p>By default Jupyter will only output the last result from a cell. The way
+I work with my maths tends to involve several steps I want to just output
+using <code>Markdown(...)</code> so I find it helpful to see all of these per cell.</p>
+<pre class="highlight python"><span class="kn">from</span> <span class="nn">IPython.core.interactiveshell</span> <span class="kn">import</span> <span class="n">InteractiveShell</span>&#x000A;<span class="n">InteractiveShell</span><span class="p">.</span><span class="n">ast_node_interactivity</span> <span class="o">=</span> <span class="s">"all"</span></pre></div>
+</td>
+</tr>
+</table>
+</div>
+</section>
+<section class='category'>
+<h2 id='//dash_ref/Category/Testing/1'>
+Testing
+</h2>
+<div class='scrollable'>
+<table>
+<tr id='//dash_ref_Testing/Entry/Watch a test/0'>
+<td class='command'>
+<p>
+<code>(;)ptw</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Watch a test</p>
+</div>
+<div class='notes'><p>Uses a KeyboardMaestro macro to output:</p>
+<pre class="highlight shell"><span class="nv">DJANGO_DB_USER</span><span class="o">=</span>postgres ptw <span class="nt">-n</span> <span class="nt">-c</span> %Variable%Path%  <span class="nt">--</span> %Variable%Flags% <span class="nt">-k</span> %Variable%Pattern%</pre>
+<p>If <em>with coverage</em> is selected then it includes the <code>--cov*</code> options.</p>
+</div>
+</td>
+</tr>
+<tr id='//dash_ref_Testing/Entry/Coverage Reporting/0'>
+<td class='command'>
+<p>
+<code>coverage</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Coverage Reporting</p>
+</div>
+<div class='notes'><p>Coverage reporting I tend to run via Pytest with the <code>pytest-cov</code> plugin.
+This is customized with the <code>coconut/.coveragerc</code> file and custom styling
+within <code>coconut/coconut/coverage.css</code>.</p>
+
+<p>Note that the <code>--cov</code> here should be in module import syntax, e.g.
+<code>invoicing.utils</code>.</p>
+<pre class="highlight shell">pytest&#x000A;  invoicing/tests/test_send_email_events.py&#x000A;  <span class="nt">--cov-report</span><span class="o">=</span>html:static/coverage/&#x000A;  <span class="nt">--cov</span><span class="o">=</span>invoicing.utils&#x000A;  <span class="nt">--pdb</span> <span class="nt">-s</span>&#x000A;  <span class="nt">-k</span> test_send_creates_email</pre>
+<p>After tests run using the <code>;ptw</code> you can get a report from the command
+line using <code>coverage report</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</section>
+<section class='category'>
+<h2 id='//dash_ref/Category/Git/1'>
+Git
+</h2>
+<div class='scrollable'>
+<table>
+<tr id='//dash_ref_Git/Entry/Aliases/0'>
+<td class='description' colspan='2'>
+<div class='name'><p>Aliases</p>
+</div>
+<div class='notes'><p>Since I spend most of my Git time in the command line these aliases save
+a bunch of time day to day.</p>
+<pre class="highlight shell"><span class="nb">alias </span><span class="nv">gp</span><span class="o">=</span><span class="s1">'git push'</span>&#x000A;<span class="nb">alias </span><span class="nv">gb</span><span class="o">=</span><span class="s1">'git branch'</span>&#x000A;<span class="nb">alias </span><span class="nv">gc</span><span class="o">=</span><span class="s1">'git checkout'</span>&#x000A;<span class="nb">alias </span><span class="nv">gmsp</span><span class="o">=</span><span class="s1">'git commit -Sjaymz@jaymz.eu -am'</span>&#x000A;<span class="nb">alias </span><span class="nv">gl</span><span class="o">=</span><span class="s1">'git log --decorate --oneline'</span>&#x000A;<span class="nb">alias </span><span class="nv">gd</span><span class="o">=</span><span class="s1">'git diff --word-diff'</span>&#x000A;<span class="nb">alias </span><span class="nv">gcl</span><span class="o">=</span><span class="s1">'git clone'</span>&#x000A;<span class="nb">alias </span><span class="nv">grb</span><span class="o">=</span><span class="s1">'git rebase -i'</span>&#x000A;<span class="nb">alias </span><span class="nv">gs</span><span class="o">=</span><span class="s1">'git stat'</span>  <span class="c"># (see alias within `~/.gitconfig`)</span>&#x000A;<span class="nb">alias </span><span class="nv">gpu</span><span class="o">=</span><span class="s1">'git pull'</span></pre>
+<p>Less commonly used:</p>
+<pre class="highlight shell"><span class="nb">alias </span><span class="nv">gittagsbydate</span><span class="o">=</span><span class="s1">'git log --tags --simplify-by-decoration --pretty="format:%ai %d"'</span>&#x000A;<span class="nb">alias </span><span class="nv">devheaddifflist</span><span class="o">=</span><span class="s1">'git diff --name-only develop..HEAD'</span><span class="p">;</span>&#x000A;</pre></div>
+</td>
+</tr>
+<tr id='//dash_ref_Git/Entry/Rebase on master/0'>
+<td class='command'>
+<p>
+<code>rebaseonmaster</code>
+</p>
+<p>
+<code>rbm</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Rebase on master</p>
+</div>
+<div class='notes'><p>Fetch current and rebase the current branch with master commits</p>
+<pre class="highlight shell">git fetch origin master:master<span class="p">;</span> git rebase origin/master <span class="nt">--gpg-sign</span><span class="o">=</span>jaymz@jaymz.eu</pre></div>
+</td>
+</tr>
+<tr id='//dash_ref_Git/Entry/Ignoring and Tracking files temporarily/0'>
+<td class='command'>
+<p>
+<code>gig</code>
+</p>
+<p>
+<code>gtr</code>
+</p>
+<p>
+<code>showignored</code>
+</p>
+<p>
+<code>ignorediff</code>
+</p>
+<p>
+<code>trackdiff</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Ignoring and Tracking files temporarily</p>
+</div>
+<div class='notes'><p>To deal with temporary changes I don&#39;t want to accidentally commit:</p>
+<pre class="highlight shell"><span class="nb">alias </span><span class="nv">gig</span><span class="o">=</span><span class="s1">'git update-index --assume-unchanged'</span>&#x000A;<span class="nb">alias </span><span class="nv">gtr</span><span class="o">=</span><span class="s1">'git update-index --no-assume-unchanged'</span>&#x000A;&#x000A;<span class="c"># Then to find these:</span>&#x000A;<span class="nb">alias </span><span class="nv">showignored</span><span class="o">=</span><span class="s1">'git ls-files -v | egrep "^[hsmrck]" | cut -d  -f2'</span>&#x000A;<span class="nb">alias </span><span class="nv">ignorediff</span><span class="o">=</span><span class="s1">'gig `gd --name-only`'</span>&#x000A;&#x000A;<span class="c"># And to retrack</span>&#x000A;<span class="nb">alias </span><span class="nv">trackdiff</span><span class="o">=</span><span class="s1">'gtr `show_ignored`'</span></pre></div>
+</td>
+</tr>
+<tr id='//dash_ref_Git/Entry/Last branch matching/0'>
+<td class='command'>
+<p>
+<code>gclastbranchmatching</code>
+</p>
+<p>
+<code>gclb</code>
+</p>
+<p>
+<code>lastbranches</code>
+</p>
+<p>
+<code>lb</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Last branch matching</p>
+</div>
+<div class='notes'><pre class="highlight shell"><span class="k">function </span>lastbranches <span class="o">{</span>&#x000A;    <span class="nb">local </span><span class="nv">COUNT</span><span class="o">=</span><span class="k">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">10</span><span class="k">}</span><span class="p">;</span>&#x000A;    gb <span class="nt">--sort</span><span class="o">=</span>committerdate <span class="nt">--format</span><span class="o">=</span><span class="s1">'%(refname:short)'</span> | <span class="nb">head</span> -<span class="nv">$COUNT</span>&#x000A;<span class="o">}</span>&#x000A;<span class="nb">alias </span><span class="nv">lb</span><span class="o">=</span>lastbranches<span class="p">;</span>&#x000A;&#x000A;<span class="k">function </span>gclastbranchmatching <span class="o">{</span>&#x000A;    <span class="nb">local </span><span class="nv">COUNT</span><span class="o">=</span><span class="k">${</span><span class="nv">2</span><span class="k">:-</span><span class="nv">25</span><span class="k">}</span><span class="p">;</span>&#x000A;    gc <span class="si">$(</span>lastbranches <span class="nv">$COUNT</span> | <span class="nb">grep</span> <span class="nt">-i</span> <span class="nv">$1</span><span class="si">)</span>&#x000A;<span class="o">}</span>&#x000A;<span class="nb">alias </span><span class="nv">gclb</span><span class="o">=</span>gclastbranchmatching</pre></div>
+</td>
+</tr>
+<tr id='//dash_ref_Git/Entry/Commits across branches/0'>
+<td class='command'>
+<p>
+<code>listnewcommitsbetweenbranches</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Commits across branches</p>
+</div>
+<div class='notes'></div>
+</td>
+</tr>
+<tr id='//dash_ref_Git/Entry/Find branch with last commit date/0'>
+<td class='command'>
+<p>
+<code>bm</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Find branch with last commit date</p>
+</div>
+<div class='notes'><p>This finds branches matching a given input along with the last commit date.</p>
+<pre class="highlight shell">  <span class="k">function </span>bm <span class="o">{</span>&#x000A;      gb <span class="nt">-a</span> <span class="nt">--sort</span><span class="o">=</span>committerdate <span class="nt">--format</span><span class="o">=</span><span class="s1">'%(refname:short): %(committerdate:iso8601)'</span> |             <span class="nb">grep</span> <span class="nt">-i</span> <span class="nv">$1</span> |             <span class="nb">sed</span> <span class="s1">'s/origin///'</span> |             <span class="nb">sort</span> |             <span class="nb">uniq</span><span class="p">;</span>&#x000A;  <span class="o">}</span></pre></div>
+</td>
+</tr>
+</table>
+</div>
+</section>
+<section class='category'>
+<h2 id='//dash_ref/Category/PDB &amp; Debugging/1'>
+PDB & Debugging
+</h2>
+<div class='scrollable'>
+<table>
+<tr id='//dash_ref_PDB &amp; Debugging/Entry/Pretty print variable/0'>
+<td class='command'>
+<p>
+<code>pp</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Pretty print variable</p>
+</div>
+<div class='notes'><p>This will output anything with newlines or key: values</p>
+</div>
+</td>
+</tr>
+<tr id='//dash_ref_PDB &amp; Debugging/Entry/Show arguments at this point/0'>
+<td class='command'>
+<p>
+<code>args</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Show arguments at this point</p>
+</div>
+<div class='notes'><p>Dumps out the current functions arguments passed</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</section>
+<section class='notes'>
+<h2>Notes</h2>
+
+</section>
+</article>
+<footer>
+Generated with <a onclick="window.dash.openExternal_(this.href); return false;" href='https://github.com/Kapeli/cheatset#readme'>cheatset</a>
+</footer>
+</body>
+</html>
