@@ -154,6 +154,59 @@ END_NOTE
 
   end
 
+
+  category do
+    id 'General macros & shortcuts'
+
+    entry do
+      command 'HYPER + B'
+      name '**Chrome** create a branch name from JIRA issue'
+      notes <<END_NOTE
+      This is a KM macro to run a Javascript on the page (assumes it's a JIRA
+      issue) and then extract the name of the ticket. This then gets "slugifyed"
+      to a suitable name for a git branch that includes the ticket ID at the start.
+
+      To finish off with it puts this into the clipboard and then switches to iTerm.
+
+      ```javascript
+      function get_branch_name() {
+
+          var summary = document.getElementById('summary-val').innerText;
+          var issue = document.getElementById('key-val').innerText;
+          var detail = summary.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s{2,}/, ' ').replace(/\s/g, '-');
+          var branch_name =  issue + '-' + detail;
+
+          branch_name = branch_name.substring(0, 64); // Keep Ali Happy ™
+
+          if (branch_name.slice(-1) == '-') {
+            branch_name = branch_name.substring(0, branch_name.length - 1);
+          }
+
+          return branch_name;
+      }
+
+      get_branch_name()
+      ```
+END_NOTE
+    end
+
+    entry do
+      command 'HYPER + U'
+      name 'Extract a UUID from the currently selected text'
+      notes <<END_NOTE
+      This is simply a regex ran via KM:
+
+      ```sh
+      .*(\w{8}-\w{4}-\w{4}-\w{4}-\w{12}).*
+      ```
+
+      Any match is then put into the clipboard.
+
+END_NOTE
+    end
+
+  end
+
   category do
     id 'Jupyter'
 
@@ -405,6 +458,56 @@ END_NOTE
       command 'args'
       name 'Show arguments at this point'
       notes 'Dumps out the current functions arguments passed'
+    end
+
+  end
+
+  category do
+    id 'Terminals & Tmux'
+
+    entry do
+      command 'capture-pane'
+      name 'Capture scrollback to file'
+      notes <<END_NOTE
+
+      Here the _1000_ signified the number lines back to copy. Use `^B` to
+      enable the command input and then:
+
+      ```sh
+      :capture-pane -S -1000
+      :save-buffer ~/log.txt
+       -
+      ```
+END_NOTE
+    end
+
+    entry do
+      command 'CTRL + B, Q'
+      command 'HYPER + P'
+
+      name 'Focus pane'
+      notes <<END_NOTE
+      I've been having issues with the "right" pane being selected when using my
+      other `SHIFT + UP/DOWN` short cut. This involves typing the pane number that
+      appears but it least focuses the relevant session then.
+END_NOTE
+    end
+
+    entry do
+      command 'ALT + UP/DOWN'
+      command 'CTRL + B, W'
+      name 'Swap session'
+      notes 'This will go through each running tmux session or let you pick from a menu'
+    end
+
+    entry do
+      command 'CMD + ;'
+      command 'CMD + SHIFT + :'
+      name '**iTerm** Open command history'
+      notes <<END_NOTE
+      Opens a searchable history list from whatever was entered across any running
+      terminal. This unfortunately does [not work](https://www.iterm2.com/documentation-shell-integration.html)
+      but is worth remembering it exists.
     end
 
   end

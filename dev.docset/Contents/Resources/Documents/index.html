@@ -16,6 +16,9 @@
 <link href='//dash_ref_Sublime Shortcuts/Entry/Open the last commit files/0'>
 <link href='//dash_ref_Sublime Shortcuts/Entry/Open the files changed since master/0'>
 <link href='//dash_ref_Sublime Shortcuts/Entry/Open matching (.py) files/0'>
+<link href='//dash_ref/Category/General macros &amp; shortcuts/1'>
+<link href='//dash_ref_General macros &amp; shortcuts/Entry/Chrome create a branch name from JIRA issue/0'>
+<link href='//dash_ref_General macros &amp; shortcuts/Entry/Extract a UUID from the currently selected text/0'>
 <link href='//dash_ref/Category/Jupyter/1'>
 <link href='//dash_ref_Jupyter/Entry/Autoreloading of modules/0'>
 <link href='//dash_ref_Jupyter/Entry/Show all cell output/0'>
@@ -32,6 +35,10 @@
 <link href='//dash_ref/Category/PDB &amp; Debugging/1'>
 <link href='//dash_ref_PDB &amp; Debugging/Entry/Pretty print variable/0'>
 <link href='//dash_ref_PDB &amp; Debugging/Entry/Show arguments at this point/0'>
+<link href='//dash_ref/Category/Tmux/1'>
+<link href='//dash_ref_Tmux/Entry/Capture scrollback to file/0'>
+<link href='//dash_ref_Tmux/Entry/Focus pane/0'>
+<link href='//dash_ref_Tmux/Entry/Swap session/0'>
 <link href='//dash_ref/Category/AWS/1'>
 <link href='//dash_ref/Entry/AWS/0'>
 </head>
@@ -214,6 +221,47 @@ Sublime Shortcuts
 <div class='name'><p>Open matching (.py) files</p>
 </div>
 <div class='notes'><pre class="highlight shell"><span class="k">function </span>openmatching <span class="o">{</span>&#x000A;    <span class="k">if</span> <span class="o">[</span> <span class="nv">$# </span><span class="nt">-eq</span> 0 <span class="o">]</span><span class="p">;</span> <span class="k">then&#x000A;        </span><span class="nb">exit</span><span class="p">;</span>&#x000A;    <span class="k">fi&#x000A;&#x000A;    </span><span class="nb">local </span><span class="nv">EXTENSION</span><span class="o">=</span><span class="k">${</span><span class="nv">2</span><span class="k">:-</span><span class="p">.py</span><span class="k">}</span><span class="p">;</span>&#x000A;    subl <span class="si">$(</span>find <span class="nb">.</span> <span class="nt">-path</span> <span class="s2">"*</span><span class="nv">$1</span><span class="s2">*"</span> <span class="nt">-name</span> <span class="s2">"*</span><span class="nv">$EXTENSION</span><span class="s2">"</span> <span class="nt">-print0</span><span class="si">)</span><span class="p">;</span>&#x000A;<span class="o">}</span></pre></div>
+</td>
+</tr>
+</table>
+</div>
+</section>
+<section class='category'>
+<h2 id='//dash_ref/Category/General macros &amp; shortcuts/1'>
+General macros & shortcuts
+</h2>
+<div class='scrollable'>
+<table>
+<tr id='//dash_ref_General macros &amp; shortcuts/Entry/Chrome create a branch name from JIRA issue/0'>
+<td class='command'>
+<p>
+<code>HYPER + B</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p><strong>Chrome</strong> create a branch name from JIRA issue</p>
+</div>
+<div class='notes'><p>This is a KM macro to run a Javascript on the page (assumes it&#39;s a JIRA
+issue) and then extract the name of the ticket. This then gets &quot;slugifyed&quot;
+to a suitable name for a git branch that includes the ticket ID at the start.</p>
+
+<p>To finish off with it puts this into the clipboard and then switches to iTerm.</p>
+<pre class="highlight javascript"><span class="kd">function</span> <span class="nx">get_branch_name</span><span class="p">()</span> <span class="p">{</span>&#x000A;&#x000A;    <span class="kd">var</span> <span class="nx">summary</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">summary-val</span><span class="dl">'</span><span class="p">).</span><span class="nx">innerText</span><span class="p">;</span>&#x000A;    <span class="kd">var</span> <span class="nx">issue</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">key-val</span><span class="dl">'</span><span class="p">).</span><span class="nx">innerText</span><span class="p">;</span>&#x000A;    <span class="kd">var</span> <span class="nx">detail</span> <span class="o">=</span> <span class="nx">summary</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">().</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/</span><span class="se">[^</span><span class="sr">w </span><span class="se">]</span><span class="sr">/g</span><span class="p">,</span> <span class="dl">''</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/ </span><span class="se">{2,}</span><span class="sr">/</span><span class="p">,</span> <span class="dl">'</span><span class="s1"> </span><span class="dl">'</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/ /g</span><span class="p">,</span> <span class="dl">'</span><span class="s1">-</span><span class="dl">'</span><span class="p">);</span>&#x000A;    <span class="kd">var</span> <span class="nx">branch_name</span> <span class="o">=</span>  <span class="nx">issue</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">-</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">detail</span><span class="p">;</span>&#x000A;&#x000A;    <span class="nx">branch_name</span> <span class="o">=</span> <span class="nx">branch_name</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">64</span><span class="p">);</span> <span class="c1">// Keep Ali Happy ™</span>&#x000A;&#x000A;    <span class="k">if</span> <span class="p">(</span><span class="nx">branch_name</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="dl">'</span><span class="s1">-</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>&#x000A;      <span class="nx">branch_name</span> <span class="o">=</span> <span class="nx">branch_name</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">branch_name</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>&#x000A;    <span class="p">}</span>&#x000A;&#x000A;    <span class="k">return</span> <span class="nx">branch_name</span><span class="p">;</span>&#x000A;<span class="p">}</span>&#x000A;&#x000A;<span class="nx">get_branch_name</span><span class="p">()</span></pre></div>
+</td>
+</tr>
+<tr id='//dash_ref_General macros &amp; shortcuts/Entry/Extract a UUID from the currently selected text/0'>
+<td class='command'>
+<p>
+<code>HYPER + U</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Extract a UUID from the currently selected text</p>
+</div>
+<div class='notes'><p>This is simply a regex ran via KM:</p>
+<pre class="highlight shell">.<span class="k">*</span><span class="o">(</span>w<span class="o">{</span>8<span class="o">}</span><span class="nt">-w</span><span class="o">{</span>4<span class="o">}</span><span class="nt">-w</span><span class="o">{</span>4<span class="o">}</span><span class="nt">-w</span><span class="o">{</span>4<span class="o">}</span><span class="nt">-w</span><span class="o">{</span>12<span class="o">})</span>.<span class="k">*</span></pre>
+<p>Any match is then put into the clipboard.</p>
+</div>
 </td>
 </tr>
 </table>
@@ -450,6 +498,63 @@ PDB & Debugging
 <div class='name'><p>Show arguments at this point</p>
 </div>
 <div class='notes'><p>Dumps out the current functions arguments passed</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</section>
+<section class='category'>
+<h2 id='//dash_ref/Category/Tmux/1'>
+Tmux
+</h2>
+<div class='scrollable'>
+<table>
+<tr id='//dash_ref_Tmux/Entry/Capture scrollback to file/0'>
+<td class='command'>
+<p>
+<code>capture-pane</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Capture scrollback to file</p>
+</div>
+<div class='notes'><p>Here the <em>1000</em> signified the number lines back to copy. Use <code>^B</code> to
+enable the command input and then:</p>
+<pre class="highlight shell">:capture-pane <span class="nt">-S</span> <span class="nt">-1000</span>&#x000A;:save-buffer ~/log.txt&#x000A; -</pre></div>
+</td>
+</tr>
+<tr id='//dash_ref_Tmux/Entry/Focus pane/0'>
+<td class='command'>
+<p>
+<code>CTRL + B, Q</code>
+</p>
+<p>
+<code>HYPER + P</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Focus pane</p>
+</div>
+<div class='notes'><p>I&#39;ve been having issues with the &quot;right&quot; pane being selected when using my
+other <code>SHIFT + UP/DOWN</code> short cut. This involves typing the pane number that
+appears but it least focuses the relevant session then.</p>
+</div>
+</td>
+</tr>
+<tr id='//dash_ref_Tmux/Entry/Swap session/0'>
+<td class='command'>
+<p>
+<code>ALT + UP/DOWN</code>
+</p>
+<p>
+<code>CTRL + B, W</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Swap session</p>
+</div>
+<div class='notes'><p>This will go through each running tmux session or let you pick from a menu</p>
 </div>
 </td>
 </tr>
