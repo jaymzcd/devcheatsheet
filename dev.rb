@@ -46,6 +46,75 @@ END_INTRO
       name '**SublimeLinter**: Show errors'
     end
 
+    entry do
+      command 'openstaged'
+      name 'Open staged files'
+      notes <<END_NOTE
+
+      ```sh
+      alias stagedfiles='git diff --relative --name-only --staged | sort | uniq'
+      alias openstaged='subl $(stagedfiles)'
+      ```
+
+END_NOTE
+    end
+
+    entry do
+      command 'opencommit'
+      name 'Open the last commit files'
+      notes <<END_NOTE
+
+      ```sh
+      function lastcommit {
+          # Returns a list of files changed in the last $1 commits - useful for
+          # getting back to work after branch changes
+          local COMMITS=${1:-1};
+          git log --pretty="format:" --name-only --relative -n$COMMITS | sort | uniq
+      }
+
+      function opencommits {
+          subl $(lastcommit $1);
+      }
+
+      alias opencommit='subl $(lastcommit)'
+      ```
+END_NOTE
+    end
+
+    entry do
+      command 'opensince'
+      name 'Open the files changed since `master`'
+      notes <<END_NOTE
+
+      ```sh
+      function commitssince {
+          local BRANCH=${1:-master};
+          git log --pretty='format:' --name-only --relative ${BRANCH}..HEAD | sort | uniq
+      }
+
+      alias opensince='subl $(commitssince)'
+      ```
+
+END_NOTE
+    end
+
+    entry do
+      command 'openmatching'
+      name 'Open matching (.py) files'
+      notes <<END_NOTE
+      ```sh
+      function openmatching {
+          if [ $# -eq 0 ]; then
+              exit;
+          fi
+
+          local EXTENSION=${2:-.py};
+          subl $(find . -path "*$1*" -name "*$EXTENSION" -print0);
+      }
+      ```
+END_NOTE
+    end
+
   end
 
   category do
@@ -275,6 +344,10 @@ END_NOTE
       notes 'Dumps out the current functions arguments passed'
     end
 
+  end
+
+  category do
+    id 'AWS'
   end
 
   notes <<END_NOTE
