@@ -9,8 +9,14 @@ cheatsheet do
 
   I have remapped some of the default keybindings that I use a lot which is
   partly why I̕ʾve created this. Any command starting with a `;` is typically
-  a [KeyboardMaestro](https://keyboardmaestro.com/) macro via a
+  a [KeyboardMaestro (KM)](https://keyboardmaestro.com/) macro via a
   [_typed string trigger_](https://wiki.keyboardmaestro.com/trigger/Typed_String).
+
+  Where a command involves `HYPER` this uses KarbinerElements to set
+ `CMD+CTRL+SHIFT+OPTION` as a "new" control key. I tend to use this to provide
+ "first class" shortcuts that are unlikley to clash with any existing ones.
+ These very often trigger KM macros.
+
 END_INTRO
 
   category do
@@ -27,27 +33,54 @@ END_INTRO
     end
 
     entry do
-      command 'ALT + F'
+      command 'OPTION + F'
       name '**Jedi**: Find uses'
     end
 
     entry do
-      command 'ALT + D'
+      command 'OPTION + D'
       name '**Jedi**: Show docstring'
     end
 
     entry do
-      command 'ALT + G'
+      command 'OPTION + G'
       name '**Jedi**: Goto definition'
     end
 
     entry do
-      command 'ALT + A'
+      command 'OPTION + A'
       name '**SublimeLinter**: Show errors'
     end
 
     entry do
+      command 'HYPER + T'
+      name 'Run a test'
+
+      notes <<END_NOTE
+      This runs a macro within KeyboardMaestro that:
+
+      1. Selects the current text under the cursor
+      1. Copies the _relative_ path to the current file for the project
+      1. Prompts for any changes to the default arguments for `pytest`
+      1. Optionally enable a coverage report for another path
+      1. Sets the clipboard to the full command we'll need to run for this test
+      1. Swaps to iTerm
+      1. Pastes in the clipboard
+
+      An example of the output:
+
+      ```sh
+      DJANGO_DB_USER=postgres \\
+      ptw -n -c invoicing/tests/test_send_email_events.py -- \\
+      --pdb -s  -k test_send_creates_email
+      ```
+END_NOTE
+    end
+
+    entry do
       command 'openstaged'
+      command 'stagedfiles'
+
       name 'Open staged files'
       notes <<END_NOTE
 
@@ -55,12 +88,14 @@ END_INTRO
       alias stagedfiles='git diff --relative --name-only --staged | sort | uniq'
       alias openstaged='subl $(stagedfiles)'
       ```
-
 END_NOTE
     end
 
     entry do
       command 'opencommit'
+      command 'opencommits'
+      command 'lastcommit'
+
       name 'Open the last commit files'
       notes <<END_NOTE
 
@@ -83,6 +118,8 @@ END_NOTE
 
     entry do
       command 'opensince'
+      command 'commitssince'
+
       name 'Open the files changed since `master`'
       notes <<END_NOTE
 
@@ -123,6 +160,7 @@ END_NOTE
     entry do
       command '%autoreload'
       command ';autoreload'
+
       name 'Autoreloading of modules'
 
       notes <<END_NOTE
@@ -304,6 +342,31 @@ END_NOTE
       command 'listnewcommitsbetweenbranches'
       name 'Commits across branches'
       notes <<END_NOTE
+
+      Since we use cherry-picking to create release branches it can be sometimes
+      helpful to see what _truely_ differs in terms of commit logs between
+      branches which may have picked commits with different hashes.
+
+      This uses a technique found on
+      [StackOverflow](https://stackoverflow.com/questions/44512391/how-can-i-find-pending-commits-between-two-branches-excluding-already-cherry-pic).
+
+      ```sh
+      function listnewcommitsbetweenbranches {
+          for commit in $(git cherry $1 $2 | egrep '^\+' | awk -F' ' '{print $2}'); do
+              LOG=$(git --no-pager log --pretty=format:"HASH:%h AUTHOR:%aN SUBJECT:%s" -n1 $commit)
+              echo $LOG;
+          done
+      }
+      ```
+
+      As an example of the output:
+
+      ```sh
+      $ listnewcommitsbetweenbranches origin/release/1.46.0 origin/release/1.47.0
+      HASH:63541805d AUTHOR:Jaymz SUBJECT:Track user ID
+      HASH:0d7bb1f45 AUTHOR:Jaymz SUBJECT:Remove XXX for now
+      HASH:11b5daabe AUTHOR:Jaymz SUBJECT:Trap IntegrityError
+      ```
 
 END_NOTE
     end

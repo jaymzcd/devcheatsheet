@@ -11,6 +11,7 @@
 <link href='//dash_ref_Sublime Shortcuts/Entry/Jedi: Show docstring/0'>
 <link href='//dash_ref_Sublime Shortcuts/Entry/Jedi: Goto definition/0'>
 <link href='//dash_ref_Sublime Shortcuts/Entry/SublimeLinter: Show errors/0'>
+<link href='//dash_ref_Sublime Shortcuts/Entry/Run a test/0'>
 <link href='//dash_ref_Sublime Shortcuts/Entry/Open staged files/0'>
 <link href='//dash_ref_Sublime Shortcuts/Entry/Open the last commit files/0'>
 <link href='//dash_ref_Sublime Shortcuts/Entry/Open the files changed since master/0'>
@@ -40,12 +41,17 @@
 </header>
 <article>
 <p><p>A cheat sheet of useful things I do for development and commands, shortcuts
-and so on to make use of over time.</p>
+ and so on to make use of over time.</p>
 
 <p>I have remapped some of the default keybindings that I use a lot which is
-partly why I̕ʾve created this. Any command starting with a <code>;</code> is typically
-a <a href="https://keyboardmaestro.com/">KeyboardMaestro</a> macro via a
-<a href="https://wiki.keyboardmaestro.com/trigger/Typed_String"><em>typed string trigger</em></a>.</p>
+ partly why I̕ʾve created this. Any command starting with a <code>;</code> is typically
+ a <a href="https://keyboardmaestro.com/">KeyboardMaestro (KM)</a> macro via a
+ <a href="https://wiki.keyboardmaestro.com/trigger/Typed_String"><em>typed string trigger</em></a>.</p>
+
+<p>Where a command involves <code>HYPER</code> this uses KarbinerElements to set
+<code>CMD+CTRL+SHIFT+OPTION</code> as a &quot;new&quot; control key. I tend to use this to provide
+&quot;first class&quot; shortcuts that are unlikley to clash with any existing ones.
+These very often trigger KM macros.</p>
 </p>
 <section class='category'>
 <h2 id='//dash_ref/Category/Sublime Shortcuts/1'>
@@ -80,7 +86,7 @@ Sublime Shortcuts
 <tr id='//dash_ref_Sublime Shortcuts/Entry/Jedi: Find uses/0'>
 <td class='command'>
 <p>
-<code>ALT + F</code>
+<code>OPTION + F</code>
 </p>
 </td>
 <td class='description'>
@@ -92,7 +98,7 @@ Sublime Shortcuts
 <tr id='//dash_ref_Sublime Shortcuts/Entry/Jedi: Show docstring/0'>
 <td class='command'>
 <p>
-<code>ALT + D</code>
+<code>OPTION + D</code>
 </p>
 </td>
 <td class='description'>
@@ -104,7 +110,7 @@ Sublime Shortcuts
 <tr id='//dash_ref_Sublime Shortcuts/Entry/Jedi: Goto definition/0'>
 <td class='command'>
 <p>
-<code>ALT + G</code>
+<code>OPTION + G</code>
 </p>
 </td>
 <td class='description'>
@@ -116,7 +122,7 @@ Sublime Shortcuts
 <tr id='//dash_ref_Sublime Shortcuts/Entry/SublimeLinter: Show errors/0'>
 <td class='command'>
 <p>
-<code>ALT + A</code>
+<code>OPTION + A</code>
 </p>
 </td>
 <td class='description'>
@@ -125,10 +131,38 @@ Sublime Shortcuts
 <div class='notes'></div>
 </td>
 </tr>
+<tr id='//dash_ref_Sublime Shortcuts/Entry/Run a test/0'>
+<td class='command'>
+<p>
+<code>HYPER + T</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Run a test</p>
+</div>
+<div class='notes'><p>This runs a macro within KeyboardMaestro that:</p>
+
+<ol>
+<li>Selects the current text under the cursor</li>
+<li>Copies the <em>relative</em> path to the current file for the project</li>
+<li>Prompts for any changes to the default arguments for <code>pytest</code></li>
+<li>Optionally enable a coverage report for another path</li>
+<li>Sets the clipboard to the full command we&#39;ll need to run for this test</li>
+<li>Swaps to iTerm</li>
+<li>Pastes in the clipboard</li>
+</ol>
+
+<p>An example of the output:</p>
+<pre class="highlight shell"><span class="nv">DJANGO_DB_USER</span><span class="o">=</span>postgres <span class="se">\</span>&#x000A;ptw <span class="nt">-n</span> <span class="nt">-c</span> invoicing/tests/test_send_email_events.py <span class="nt">--</span> <span class="se">\</span>&#x000A;<span class="nt">--pdb</span> <span class="nt">-s</span>  <span class="nt">-k</span> test_send_creates_email</pre></div>
+</td>
+</tr>
 <tr id='//dash_ref_Sublime Shortcuts/Entry/Open staged files/0'>
 <td class='command'>
 <p>
 <code>openstaged</code>
+</p>
+<p>
+<code>stagedfiles</code>
 </p>
 </td>
 <td class='description'>
@@ -142,6 +176,12 @@ Sublime Shortcuts
 <p>
 <code>opencommit</code>
 </p>
+<p>
+<code>opencommits</code>
+</p>
+<p>
+<code>lastcommit</code>
+</p>
 </td>
 <td class='description'>
 <div class='name'><p>Open the last commit files</p>
@@ -153,6 +193,9 @@ Sublime Shortcuts
 <td class='command'>
 <p>
 <code>opensince</code>
+</p>
+<p>
+<code>commitssince</code>
 </p>
 </td>
 <td class='description'>
@@ -351,7 +394,15 @@ a bunch of time day to day.</p>
 <td class='description'>
 <div class='name'><p>Commits across branches</p>
 </div>
-<div class='notes'></div>
+<div class='notes'><p>Since we use cherry-picking to create release branches it can be sometimes
+helpful to see what <em>truely</em> differs in terms of commit logs between
+branches which may have picked commits with different hashes.</p>
+
+<p>This uses a technique found on
+<a href="https://stackoverflow.com/questions/44512391/how-can-i-find-pending-commits-between-two-branches-excluding-already-cherry-pic">StackOverflow</a>.</p>
+<pre class="highlight shell"><span class="k">function </span>listnewcommitsbetweenbranches <span class="o">{</span>&#x000A;    <span class="k">for </span>commit <span class="k">in</span> <span class="si">$(</span>git cherry <span class="nv">$1</span> <span class="nv">$2</span> | egrep <span class="s1">'^+'</span> | <span class="nb">awk</span> <span class="nt">-F</span><span class="s1">' '</span> <span class="s1">'{print $2}'</span><span class="si">)</span><span class="p">;</span> <span class="k">do&#x000A;        </span><span class="nv">LOG</span><span class="o">=</span><span class="si">$(</span>git <span class="nt">--no-pager</span> log <span class="nt">--pretty</span><span class="o">=</span>format:<span class="s2">"HASH:%h AUTHOR:%aN SUBJECT:%s"</span> <span class="nt">-n1</span> <span class="nv">$commit</span><span class="si">)</span>&#x000A;        <span class="nb">echo</span> <span class="nv">$LOG</span><span class="p">;</span>&#x000A;    <span class="k">done</span>&#x000A;<span class="o">}</span></pre>
+<p>As an example of the output:</p>
+<pre class="highlight shell"><span class="nv">$ </span>listnewcommitsbetweenbranches origin/release/1.46.0 origin/release/1.47.0&#x000A;HASH:63541805d AUTHOR:Jaymz SUBJECT:Track user ID&#x000A;HASH:0d7bb1f45 AUTHOR:Jaymz SUBJECT:Remove XXX <span class="k">for </span>now&#x000A;HASH:11b5daabe AUTHOR:Jaymz SUBJECT:Trap IntegrityError</pre></div>
 </td>
 </tr>
 <tr id='//dash_ref_Git/Entry/Find branch with last commit date/0'>
