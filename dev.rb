@@ -24,7 +24,8 @@ END_INTRO
 
     entry do
       command 'CTRL + -'
-      name 'Jump back to last cursor location'
+      command 'CTRL + SHIFT + -'
+      name 'Jump back / forward to last cursor location (even across files)'
     end
 
     entry do
@@ -465,7 +466,7 @@ END_NOTE
 
     entry do
       command 'capture-pane'
-      name 'Capture scrollback to file'
+      name '**tmux** Capture scrollback to file'
       notes <<END_NOTE
 
       Here the _1000_ signified the number lines back to copy. Use `^B` to
@@ -474,7 +475,36 @@ END_NOTE
       ```sh
       :capture-pane -S -1000
       :save-buffer ~/log.txt
-       -
+      ```
+END_NOTE
+    end
+
+    entry do
+      command 'tc'
+      command 'ta'
+      command 'tk'
+      command 'tw'
+      command 'ts'
+      name '**tmux** Session aliases'
+      notes <<END_NOTE
+
+      Some aliases to make creating/joining tmux sessions a little nicer.
+
+      ```sh
+      # Daily usage
+      alias tc='tmux new -s'
+      alias ta='tmux attach -t'
+      alias ts='tmux list-sessions'
+
+      # Useful - should use more!
+      alias tw='tmux rename-window'
+
+      # Not used as much but handy
+      alias tk='tmux kill-session -t'
+      alias tn='tmux rename-session'
+
+      # Easier to do ALT + UP/DOWN but useful for scripts
+      alias tsw='tmux switch -t'
       ```
 END_NOTE
     end
@@ -483,7 +513,7 @@ END_NOTE
       command 'CTRL + B, Q'
       command 'HYPER + P'
 
-      name 'Focus pane'
+      name '**tmux** Focus pane'
       notes <<END_NOTE
       Iʾve been having issues with the "right" pane being selected when using my
       other `SHIFT + UP/DOWN` short cut. This involves typing the pane number that
@@ -494,7 +524,7 @@ END_NOTE
     entry do
       command 'ALT + UP/DOWN'
       command 'CTRL + B, W'
-      name 'Swap session'
+      name '**tmux** Swap session'
       notes 'This will go through each running tmux session or let you pick from a menu'
     end
 

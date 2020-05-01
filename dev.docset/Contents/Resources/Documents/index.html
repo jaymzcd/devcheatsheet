@@ -5,7 +5,7 @@
 <title>Dev Cheat Sheet</title>
 <link href='style.css' rel='stylesheet'>
 <link href='//dash_ref/Category/Sublime Shortcuts/1'>
-<link href='//dash_ref_Sublime Shortcuts/Entry/Jump back to last cursor location/0'>
+<link href='//dash_ref_Sublime Shortcuts/Entry/Jump back %2F forward to last cursor location (even across files)/0'>
 <link href='//dash_ref_Sublime Shortcuts/Entry/Jump to a symbol across the project/0'>
 <link href='//dash_ref_Sublime Shortcuts/Entry/Jedi: Find uses/0'>
 <link href='//dash_ref_Sublime Shortcuts/Entry/Jedi: Show docstring/0'>
@@ -36,9 +36,10 @@
 <link href='//dash_ref_PDB &amp; Debugging/Entry/Pretty print variable/0'>
 <link href='//dash_ref_PDB &amp; Debugging/Entry/Show arguments at this point/0'>
 <link href='//dash_ref/Category/Terminals &amp; Tmux/1'>
-<link href='//dash_ref_Terminals &amp; Tmux/Entry/Capture scrollback to file/0'>
-<link href='//dash_ref_Terminals &amp; Tmux/Entry/Focus pane/0'>
-<link href='//dash_ref_Terminals &amp; Tmux/Entry/Swap session/0'>
+<link href='//dash_ref_Terminals &amp; Tmux/Entry/tmux Capture scrollback to file/0'>
+<link href='//dash_ref_Terminals &amp; Tmux/Entry/tmux Session aliases/0'>
+<link href='//dash_ref_Terminals &amp; Tmux/Entry/tmux Focus pane/0'>
+<link href='//dash_ref_Terminals &amp; Tmux/Entry/tmux Swap session/0'>
 <link href='//dash_ref_Terminals &amp; Tmux/Entry/iTerm Open command history/0'>
 <link href='//dash_ref/Category/AWS/1'>
 <link href='//dash_ref/Entry/AWS/0'>
@@ -74,14 +75,17 @@ Sublime Shortcuts
 </h2>
 <div class='scrollable'>
 <table>
-<tr id='//dash_ref_Sublime Shortcuts/Entry/Jump back to last cursor location/0'>
+<tr id='//dash_ref_Sublime Shortcuts/Entry/Jump back %2F forward to last cursor location (even across files)/0'>
 <td class='command'>
 <p>
 <code>CTRL + -</code>
 </p>
+<p>
+<code>CTRL + SHIFT + -</code>
+</p>
 </td>
 <td class='description'>
-<div class='name'><p>Jump back to last cursor location</p>
+<div class='name'><p>Jump back / forward to last cursor location (even across files)</p>
 </div>
 <div class='notes'></div>
 </td>
@@ -518,21 +522,46 @@ Terminals & Tmux
 </h2>
 <div class='scrollable'>
 <table>
-<tr id='//dash_ref_Terminals &amp; Tmux/Entry/Capture scrollback to file/0'>
+<tr id='//dash_ref_Terminals &amp; Tmux/Entry/tmux Capture scrollback to file/0'>
 <td class='command'>
 <p>
 <code>capture-pane</code>
 </p>
 </td>
 <td class='description'>
-<div class='name'><p>Capture scrollback to file</p>
+<div class='name'><p><strong>tmux</strong> Capture scrollback to file</p>
 </div>
 <div class='notes'><p>Here the <em>1000</em> signified the number lines back to copy. Use <code>^B</code> to
 enable the command input and then:</p>
-<pre class="highlight shell">:capture-pane <span class="nt">-S</span> <span class="nt">-1000</span>&#x000A;:save-buffer ~/log.txt&#x000A; -</pre></div>
+<pre class="highlight shell">:capture-pane <span class="nt">-S</span> <span class="nt">-1000</span>&#x000A;:save-buffer ~/log.txt</pre></div>
 </td>
 </tr>
-<tr id='//dash_ref_Terminals &amp; Tmux/Entry/Focus pane/0'>
+<tr id='//dash_ref_Terminals &amp; Tmux/Entry/tmux Session aliases/0'>
+<td class='command'>
+<p>
+<code>tc</code>
+</p>
+<p>
+<code>ta</code>
+</p>
+<p>
+<code>tk</code>
+</p>
+<p>
+<code>tw</code>
+</p>
+<p>
+<code>ts</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p><strong>tmux</strong> Session aliases</p>
+</div>
+<div class='notes'><p>Some aliases to make creating/joining tmux sessions a little nicer.</p>
+<pre class="highlight shell"><span class="c"># Daily usage</span>&#x000A;<span class="nb">alias </span><span class="nv">tc</span><span class="o">=</span><span class="s1">'tmux new -s'</span>&#x000A;<span class="nb">alias </span><span class="nv">ta</span><span class="o">=</span><span class="s1">'tmux attach -t'</span>&#x000A;<span class="nb">alias </span><span class="nv">ts</span><span class="o">=</span><span class="s1">'tmux list-sessions'</span>&#x000A;&#x000A;<span class="c"># Useful - should use more!</span>&#x000A;<span class="nb">alias </span><span class="nv">tw</span><span class="o">=</span><span class="s1">'tmux rename-window'</span>&#x000A;&#x000A;<span class="c"># Not used as much but handy</span>&#x000A;<span class="nb">alias </span><span class="nv">tk</span><span class="o">=</span><span class="s1">'tmux kill-session -t'</span>&#x000A;<span class="nb">alias </span><span class="nv">tn</span><span class="o">=</span><span class="s1">'tmux rename-session'</span>&#x000A;&#x000A;<span class="c"># Easier to do ALT + UP/DOWN but useful for scripts</span>&#x000A;<span class="nb">alias </span><span class="nv">tsw</span><span class="o">=</span><span class="s1">'tmux switch -t'</span></pre></div>
+</td>
+</tr>
+<tr id='//dash_ref_Terminals &amp; Tmux/Entry/tmux Focus pane/0'>
 <td class='command'>
 <p>
 <code>CTRL + B, Q</code>
@@ -542,7 +571,7 @@ enable the command input and then:</p>
 </p>
 </td>
 <td class='description'>
-<div class='name'><p>Focus pane</p>
+<div class='name'><p><strong>tmux</strong> Focus pane</p>
 </div>
 <div class='notes'><p>Iʾve been having issues with the &quot;right&quot; pane being selected when using my
 other <code>SHIFT + UP/DOWN</code> short cut. This involves typing the pane number that
@@ -550,7 +579,7 @@ appears but it least focuses the relevant session then.</p>
 </div>
 </td>
 </tr>
-<tr id='//dash_ref_Terminals &amp; Tmux/Entry/Swap session/0'>
+<tr id='//dash_ref_Terminals &amp; Tmux/Entry/tmux Swap session/0'>
 <td class='command'>
 <p>
 <code>ALT + UP/DOWN</code>
@@ -560,7 +589,7 @@ appears but it least focuses the relevant session then.</p>
 </p>
 </td>
 <td class='description'>
-<div class='name'><p>Swap session</p>
+<div class='name'><p><strong>tmux</strong> Swap session</p>
 </div>
 <div class='notes'><p>This will go through each running tmux session or let you pick from a menu</p>
 </div>
