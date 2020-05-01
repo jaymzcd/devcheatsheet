@@ -539,18 +539,31 @@ END_NOTE
 END_NOTE
     end
 
+    entry do
+      command 'watch'
+      command 'watch -n <secs>'
+      name 'Repeat command'
+    end
+
   end
 
   category do
-    id 'AWS'
+    id 'Regular Expressions'
+
+    entry do
+      command '(?:)'
+      name 'Non-capturing group'
+      notes 'This will not return in `.group(n)` match objects. Useful for ignoring terms.'
+    end
+
   end
 
   category do
-    id 'Docker'
+    id 'grep, ripgrep & related'
   end
 
   category do
-    id 'Alfread Custom Searches'
+    id 'Alfred Custom Searches'
 
     entry do
       command 'cf'
@@ -574,7 +587,65 @@ END_NOTE
 
   end
 
+  category do
+    id 'AWS'
+  end
+
+  category do
+    id 'Docker'
+  end
+
+  category do
+    id 'OS X specific'
+
+    entry do
+      command 'caffeinate'
+      command 'caffeinate -t <secs>'
+      name 'Avoid sleeping, this is basically a command line version of InsomniaX and ships with OS-X.'
+    end
+
+    entry do
+      command 'pbcopy'
+      command 'pbpaste'
+      name 'Copy & paste buffer access from terminal'
+    end
+
+  end
+
+  category do
+    id 'Media conversion'
+
+    entry do
+      name '**ffmpeg** extract slice of video'
+    end
+
+    entry do
+      name '**ffmpeg** rip audo'
+    end
+
+    entry do
+      name '**ffmpeg** resize video'
+    end
+
+    entry do
+      name '**imagemagick** create animated GIF'
+    end
+
+    entry do
+      name 'Compress animated GIF'
+    end
+
+    entry do
+      name '**vlc** rip stream'
+    end
+
+  end
+
   notes <<END_NOTE
+
+### Rationale
+
+### History
 
 END_NOTE
 

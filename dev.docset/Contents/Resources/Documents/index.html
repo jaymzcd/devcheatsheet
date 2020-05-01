@@ -41,15 +41,30 @@
 <link href='//dash_ref_Terminals &amp; Tmux/Entry/tmux Focus pane/0'>
 <link href='//dash_ref_Terminals &amp; Tmux/Entry/tmux Swap session/0'>
 <link href='//dash_ref_Terminals &amp; Tmux/Entry/iTerm Open command history/0'>
+<link href='//dash_ref_Terminals &amp; Tmux/Entry/Repeat command/0'>
+<link href='//dash_ref/Category/Regular Expressions/1'>
+<link href='//dash_ref_Regular Expressions/Entry/Non-capturing group/0'>
+<link href='//dash_ref/Category/grep, ripgrep &amp; related/1'>
+<link href='//dash_ref/Entry/grep, ripgrep &amp; related/0'>
+<link href='//dash_ref/Category/Alfred Custom Searches/1'>
+<link href='//dash_ref_Alfred Custom Searches/Entry/Confluence search for {term}/0'>
+<link href='//dash_ref_Alfred Custom Searches/Entry/JIRA Open issue COCO-{XXXX}/0'>
+<link href='//dash_ref_Alfred Custom Searches/Entry/JIRA search for {term}/0'>
+<link href='//dash_ref_Alfred Custom Searches/Entry/Github open platform PR #{XXX}/0'>
 <link href='//dash_ref/Category/AWS/1'>
 <link href='//dash_ref/Entry/AWS/0'>
 <link href='//dash_ref/Category/Docker/1'>
 <link href='//dash_ref/Entry/Docker/0'>
-<link href='//dash_ref/Category/Alfread Custom Searches/1'>
-<link href='//dash_ref_Alfread Custom Searches/Entry/Confluence search for {term}/0'>
-<link href='//dash_ref_Alfread Custom Searches/Entry/JIRA Open issue COCO-{XXXX}/0'>
-<link href='//dash_ref_Alfread Custom Searches/Entry/JIRA search for {term}/0'>
-<link href='//dash_ref_Alfread Custom Searches/Entry/Github open platform PR #{XXX}/0'>
+<link href='//dash_ref/Category/OS X specific/1'>
+<link href='//dash_ref_OS X specific/Entry/Avoid sleeping, this is basically a command line version of InsomniaX and ships with OS-X./0'>
+<link href='//dash_ref_OS X specific/Entry/Copy &amp; paste buffer access from terminal/0'>
+<link href='//dash_ref/Category/Media conversion/1'>
+<link href='//dash_ref_Media conversion/Entry/ffmpeg extract slice of video/0'>
+<link href='//dash_ref_Media conversion/Entry/ffmpeg rip audo/0'>
+<link href='//dash_ref_Media conversion/Entry/ffmpeg resize video/0'>
+<link href='//dash_ref_Media conversion/Entry/imagemagick create animated GIF/0'>
+<link href='//dash_ref_Media conversion/Entry/Compress animated GIF/0'>
+<link href='//dash_ref_Media conversion/Entry/vlc rip stream/0'>
 </head>
 <body>
 <header>
@@ -613,6 +628,110 @@ but is worth remembering it exists.</p>
 </div>
 </td>
 </tr>
+<tr id='//dash_ref_Terminals &amp; Tmux/Entry/Repeat command/0'>
+<td class='command'>
+<p>
+<code>watch</code>
+</p>
+<p>
+<code>watch -n &lt;secs&gt;</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Repeat command</p>
+</div>
+<div class='notes'></div>
+</td>
+</tr>
+</table>
+</div>
+</section>
+<section class='category'>
+<h2 id='//dash_ref/Category/Regular Expressions/1'>
+Regular Expressions
+</h2>
+<div class='scrollable'>
+<table>
+<tr id='//dash_ref_Regular Expressions/Entry/Non-capturing group/0'>
+<td class='command'>
+<p>
+<code>(?:)</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Non-capturing group</p>
+</div>
+<div class='notes'><p>This will not return in <code>.group(n)</code> match objects. Useful for ignoring terms.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</section>
+<section class='category'>
+<a name='//dash_ref/Entry/grep, ripgrep &amp; related/0'></a>
+<h2 id='//dash_ref/Category/grep, ripgrep &amp; related/1'>
+grep, ripgrep & related
+</h2>
+<div class='scrollable'>
+<table>
+</table>
+</div>
+</section>
+<section class='category'>
+<h2 id='//dash_ref/Category/Alfred Custom Searches/1'>
+Alfred Custom Searches
+</h2>
+<div class='scrollable'>
+<table>
+<tr id='//dash_ref_Alfred Custom Searches/Entry/Confluence search for {term}/0'>
+<td class='command'>
+<p>
+<code>cf</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p><strong>Confluence</strong> search for {term}</p>
+</div>
+<div class='notes'></div>
+</td>
+</tr>
+<tr id='//dash_ref_Alfred Custom Searches/Entry/JIRA Open issue COCO-{XXXX}/0'>
+<td class='command'>
+<p>
+<code>jr</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p><strong>JIRA</strong> Open issue COCO-{XXXX}</p>
+</div>
+<div class='notes'></div>
+</td>
+</tr>
+<tr id='//dash_ref_Alfred Custom Searches/Entry/JIRA search for {term}/0'>
+<td class='command'>
+<p>
+<code>js</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p><strong>JIRA</strong> search for {term}</p>
+</div>
+<div class='notes'></div>
+</td>
+</tr>
+<tr id='//dash_ref_Alfred Custom Searches/Entry/Github open platform PR #{XXX}/0'>
+<td class='command'>
+<p>
+<code>pr</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p><strong>Github</strong> open platform PR #{XXX}</p>
+</div>
+<div class='notes'></div>
+</td>
+</tr>
 </table>
 </div>
 </section>
@@ -637,55 +756,88 @@ Docker
 </div>
 </section>
 <section class='category'>
-<h2 id='//dash_ref/Category/Alfread Custom Searches/1'>
-Alfread Custom Searches
+<h2 id='//dash_ref/Category/OS X specific/1'>
+OS X specific
 </h2>
 <div class='scrollable'>
 <table>
-<tr id='//dash_ref_Alfread Custom Searches/Entry/Confluence search for {term}/0'>
+<tr id='//dash_ref_OS X specific/Entry/Avoid sleeping, this is basically a command line version of InsomniaX and ships with OS-X./0'>
 <td class='command'>
 <p>
-<code>cf</code>
+<code>caffeinate</code>
+</p>
+<p>
+<code>caffeinate -t &lt;secs&gt;</code>
 </p>
 </td>
 <td class='description'>
-<div class='name'><p><strong>Confluence</strong> search for {term}</p>
+<div class='name'><p>Avoid sleeping, this is basically a command line version of InsomniaX and ships with OS-X.</p>
 </div>
 <div class='notes'></div>
 </td>
 </tr>
-<tr id='//dash_ref_Alfread Custom Searches/Entry/JIRA Open issue COCO-{XXXX}/0'>
+<tr id='//dash_ref_OS X specific/Entry/Copy &amp; paste buffer access from terminal/0'>
 <td class='command'>
 <p>
-<code>jr</code>
+<code>pbcopy</code>
+</p>
+<p>
+<code>pbpaste</code>
 </p>
 </td>
 <td class='description'>
-<div class='name'><p><strong>JIRA</strong> Open issue COCO-{XXXX}</p>
+<div class='name'><p>Copy &amp; paste buffer access from terminal</p>
 </div>
 <div class='notes'></div>
 </td>
 </tr>
-<tr id='//dash_ref_Alfread Custom Searches/Entry/JIRA search for {term}/0'>
-<td class='command'>
-<p>
-<code>js</code>
-</p>
-</td>
-<td class='description'>
-<div class='name'><p><strong>JIRA</strong> search for {term}</p>
+</table>
+</div>
+</section>
+<section class='category'>
+<h2 id='//dash_ref/Category/Media conversion/1'>
+Media conversion
+</h2>
+<div class='scrollable'>
+<table>
+<tr id='//dash_ref_Media conversion/Entry/ffmpeg extract slice of video/0'>
+<td class='description' colspan='2'>
+<div class='name'><p><strong>ffmpeg</strong> extract slice of video</p>
 </div>
 <div class='notes'></div>
 </td>
 </tr>
-<tr id='//dash_ref_Alfread Custom Searches/Entry/Github open platform PR #{XXX}/0'>
-<td class='command'>
-<p>
-<code>pr</code>
-</p>
+<tr id='//dash_ref_Media conversion/Entry/ffmpeg rip audo/0'>
+<td class='description' colspan='2'>
+<div class='name'><p><strong>ffmpeg</strong> rip audo</p>
+</div>
+<div class='notes'></div>
 </td>
-<td class='description'>
-<div class='name'><p><strong>Github</strong> open platform PR #{XXX}</p>
+</tr>
+<tr id='//dash_ref_Media conversion/Entry/ffmpeg resize video/0'>
+<td class='description' colspan='2'>
+<div class='name'><p><strong>ffmpeg</strong> resize video</p>
+</div>
+<div class='notes'></div>
+</td>
+</tr>
+<tr id='//dash_ref_Media conversion/Entry/imagemagick create animated GIF/0'>
+<td class='description' colspan='2'>
+<div class='name'><p><strong>imagemagick</strong> create animated GIF</p>
+</div>
+<div class='notes'></div>
+</td>
+</tr>
+<tr id='//dash_ref_Media conversion/Entry/Compress animated GIF/0'>
+<td class='description' colspan='2'>
+<div class='name'><p>Compress animated GIF</p>
+</div>
+<div class='notes'></div>
+</td>
+</tr>
+<tr id='//dash_ref_Media conversion/Entry/vlc rip stream/0'>
+<td class='description' colspan='2'>
+<div class='name'><p><strong>vlc</strong> rip stream</p>
 </div>
 <div class='notes'></div>
 </td>
@@ -695,6 +847,9 @@ Alfread Custom Searches
 </section>
 <section class='notes'>
 <h2>Notes</h2>
+<h3>Rationale</h3>
+
+<h3>History</h3>
 
 </section>
 </article>
