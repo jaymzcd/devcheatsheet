@@ -219,7 +219,7 @@ END_NOTE
       notes <<END_NOTE
 
       The [`%autoreload` magic command](https://ipython.org/ipython-doc/stable/config/extensions/autoreload.html)
-      will reload modules once it's been loaded.
+      will reload modules once itʾs been loaded.
       I use the `;autoreload` macro to write out in any session:
 
       ```python
@@ -234,7 +234,6 @@ END_NOTE
       command 'ast_node_interactivity'
 
       notes <<END_NOTE
-
       By default Jupyter will only output the last result from a cell. The way
       I work with my maths tends to involve several steps I want to just output
       using `Markdown(...)` so I find it helpful to see all of these per cell.
@@ -351,7 +350,7 @@ END_NOTE
       name 'Ignoring and Tracking files temporarily'
       notes <<END_NOTE
 
-      To deal with temporary changes I don't want to accidentally commit:
+      To deal with temporary changes I donʾt want to accidentally commit:
 
       ```sh
       alias gig='git update-index --assume-unchanged'
@@ -395,7 +394,6 @@ END_NOTE
       command 'listnewcommitsbetweenbranches'
       name 'Commits across branches'
       notes <<END_NOTE
-
       Since we use cherry-picking to create release branches it can be sometimes
       helpful to see what _truely_ differs in terms of commit logs between
       branches which may have picked commits with different hashes.
@@ -433,10 +431,10 @@ END_NOTE
 
       ```sh
         function bm {
-            gb -a --sort=committerdate --format='%(refname:short): %(committerdate:iso8601)' | \
-            grep -i $1 | \
-            sed 's/origin\///' | \
-            sort | \
+            gb -a --sort=committerdate --format='%(refname:short): %(committerdate:iso8601)' | \\
+            grep -i $1 | \\
+            sed 's/origin\///' | \\
+            sort | \\
             uniq;
         }
         ```
@@ -487,7 +485,7 @@ END_NOTE
 
       name 'Focus pane'
       notes <<END_NOTE
-      I've been having issues with the "right" pane being selected when using my
+      Iʾve been having issues with the "right" pane being selected when using my
       other `SHIFT + UP/DOWN` short cut. This involves typing the pane number that
       appears but it least focuses the relevant session then.
 END_NOTE
@@ -508,12 +506,42 @@ END_NOTE
       Opens a searchable history list from whatever was entered across any running
       terminal. This unfortunately does [not work](https://www.iterm2.com/documentation-shell-integration.html)
       but is worth remembering it exists.
+END_NOTE
     end
 
   end
 
   category do
     id 'AWS'
+  end
+
+  category do
+    id 'Docker'
+  end
+
+  category do
+    id 'Alfread Custom Searches'
+
+    entry do
+      command 'cf'
+      name '**Confluence** search for {term}'
+    end
+
+    entry do
+      command 'jr'
+      name '**JIRA** Open issue COCO-{XXXX}'
+    end
+
+    entry do
+      command 'js'
+      name '**JIRA** search for {term}'
+    end
+
+    entry do
+      command 'pr'
+      name '**Github** open platform PR #{XXX}'
+    end
+
   end
 
   notes <<END_NOTE
