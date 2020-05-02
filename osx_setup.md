@@ -25,13 +25,13 @@ Mainly actual work applications
 
 ```
 tmux exa docker-compose awscli node tig fasd direnv pyenv gpg pgcli p7zip
-doxygen diff-so-fancy git-gui most ripgrep unrar jq watch
+doxygen diff-so-fancy git-gui most ripgrep unrar jq watch fswatch
 ```
 
 Usually useful to have for more general stuff
 
 ```
-nmap httpie graphviz graphicsmagick csvkit cloc elinks mtr owasp-zap
+nmap httpie graphviz graphicsmagick csvkit cloc elinks mtr owasp-zap ffmpeg
 ```
 
 For fun
@@ -53,10 +53,10 @@ selfcontrol awscli ngrok calibre disk-inventory-x tunnelblick 1password insomnia
 android-file-transfer haptickey session-manager-plugin
 ```
 
-Others for fun, maybe depending on situtation/need:
+Others for fun, maybe depending on situation/need:
 
 ```
-blender magicavoxel gzdoom steam gimp inkscape libreoffice firefox
+blender magicavoxel gzdoom steam gimp inkscape libreoffice firefox gifsicle
 android-platform-tools
 ```
 
@@ -493,6 +493,8 @@ again and minimizes disruption from any "missing" bits that I get to as I need
   * click scrollbar to jump 
   * recent items: 50
   * disable allow handoff (no iOS devices...)
+* VLC:
+  * uncheck "aspect ratio" to allow window resizing to any size
 
 ## Finder
 

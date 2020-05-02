@@ -18,6 +18,7 @@
 <link href='//dash_ref_Sublime Shortcuts/Entry/Open matching (.py) files/0'>
 <link href='//dash_ref/Category/General macros &amp; shortcuts/1'>
 <link href='//dash_ref_General macros &amp; shortcuts/Entry/Chrome create a branch name from JIRA issue/0'>
+<link href='//dash_ref_General macros &amp; shortcuts/Entry/Shell Prepare a squash commit or PR title message/0'>
 <link href='//dash_ref_General macros &amp; shortcuts/Entry/Extract a UUID from the currently selected text/0'>
 <link href='//dash_ref/Category/Jupyter/1'>
 <link href='//dash_ref_Jupyter/Entry/Autoreloading of modules/0'>
@@ -41,16 +42,24 @@
 <link href='//dash_ref_Terminals &amp; Tmux/Entry/tmux Focus pane/0'>
 <link href='//dash_ref_Terminals &amp; Tmux/Entry/tmux Swap session/0'>
 <link href='//dash_ref_Terminals &amp; Tmux/Entry/iTerm Open command history/0'>
-<link href='//dash_ref_Terminals &amp; Tmux/Entry/Repeat command/0'>
+<link href='//dash_ref_Terminals &amp; Tmux/Entry/Repeat command at an interval/0'>
+<link href='//dash_ref_Terminals &amp; Tmux/Entry/Repeat command on file system changes/0'>
 <link href='//dash_ref/Category/Regular Expressions/1'>
 <link href='//dash_ref_Regular Expressions/Entry/Non-capturing group/0'>
 <link href='//dash_ref/Category/grep, ripgrep &amp; related/1'>
-<link href='//dash_ref/Entry/grep, ripgrep &amp; related/0'>
+<link href='//dash_ref_grep, ripgrep &amp; related/Entry/Print files matching pattern/0'>
+<link href='//dash_ref_grep, ripgrep &amp; related/Entry/Output only the matches/0'>
+<link href='//dash_ref_grep, ripgrep &amp; related/Entry/Search Python and HTML files for pattern/0'>
 <link href='//dash_ref/Category/Alfred Custom Searches/1'>
 <link href='//dash_ref_Alfred Custom Searches/Entry/Confluence search for {term}/0'>
 <link href='//dash_ref_Alfred Custom Searches/Entry/JIRA Open issue COCO-{XXXX}/0'>
 <link href='//dash_ref_Alfred Custom Searches/Entry/JIRA search for {term}/0'>
 <link href='//dash_ref_Alfred Custom Searches/Entry/Github open platform PR #{XXX}/0'>
+<link href='//dash_ref_Alfred Custom Searches/Entry/Github search/0'>
+<link href='//dash_ref_Alfred Custom Searches/Entry/Google search/0'>
+<link href='//dash_ref_Alfred Custom Searches/Entry/Archive.Org/0'>
+<link href='//dash_ref_Alfred Custom Searches/Entry/Google search images/0'>
+<link href='//dash_ref_Alfred Custom Searches/Entry/Wikipedia search/0'>
 <link href='//dash_ref/Category/AWS/1'>
 <link href='//dash_ref/Entry/AWS/0'>
 <link href='//dash_ref/Category/Docker/1'>
@@ -58,10 +67,14 @@
 <link href='//dash_ref/Category/OS X specific/1'>
 <link href='//dash_ref_OS X specific/Entry/Avoid sleeping, this is basically a command line version of InsomniaX and ships with OS-X./0'>
 <link href='//dash_ref_OS X specific/Entry/Copy &amp; paste buffer access from terminal/0'>
+<link href='//dash_ref_OS X specific/Entry/Brightness down%2Fup by 3 steps/0'>
+<link href='//dash_ref_OS X specific/Entry/Volume down%2Fup by 3 steps/0'>
 <link href='//dash_ref/Category/Media conversion/1'>
 <link href='//dash_ref_Media conversion/Entry/ffmpeg extract slice of video/0'>
+<link href='//dash_ref_Media conversion/Entry/ffmpeg remove audo/0'>
 <link href='//dash_ref_Media conversion/Entry/ffmpeg rip audo/0'>
-<link href='//dash_ref_Media conversion/Entry/ffmpeg resize video/0'>
+<link href='//dash_ref_Media conversion/Entry/ffmpeg resize video, where x, y are in pixels/0'>
+<link href='//dash_ref_Media conversion/Entry/ffmpeg reverse video/0'>
 <link href='//dash_ref_Media conversion/Entry/imagemagick create animated GIF/0'>
 <link href='//dash_ref_Media conversion/Entry/Compress animated GIF/0'>
 <link href='//dash_ref_Media conversion/Entry/vlc rip stream/0'>
@@ -276,6 +289,34 @@ to a suitable name for a git branch that includes the ticket ID at the start.</p
 <pre class="highlight javascript"><span class="kd">function</span> <span class="nx">get_branch_name</span><span class="p">()</span> <span class="p">{</span>&#x000A;&#x000A;    <span class="kd">var</span> <span class="nx">summary</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">summary-val</span><span class="dl">'</span><span class="p">).</span><span class="nx">innerText</span><span class="p">;</span>&#x000A;    <span class="kd">var</span> <span class="nx">issue</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">key-val</span><span class="dl">'</span><span class="p">).</span><span class="nx">innerText</span><span class="p">;</span>&#x000A;    <span class="kd">var</span> <span class="nx">detail</span> <span class="o">=</span> <span class="nx">summary</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">().</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/</span><span class="se">[^</span><span class="sr">w </span><span class="se">]</span><span class="sr">/g</span><span class="p">,</span> <span class="dl">''</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/ </span><span class="se">{2,}</span><span class="sr">/</span><span class="p">,</span> <span class="dl">'</span><span class="s1"> </span><span class="dl">'</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/ /g</span><span class="p">,</span> <span class="dl">'</span><span class="s1">-</span><span class="dl">'</span><span class="p">);</span>&#x000A;    <span class="kd">var</span> <span class="nx">branch_name</span> <span class="o">=</span>  <span class="nx">issue</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">-</span><span class="dl">'</span> <span class="o">+</span> <span class="nx">detail</span><span class="p">;</span>&#x000A;&#x000A;    <span class="nx">branch_name</span> <span class="o">=</span> <span class="nx">branch_name</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">64</span><span class="p">);</span> <span class="c1">// Keep Ali Happy ™</span>&#x000A;&#x000A;    <span class="k">if</span> <span class="p">(</span><span class="nx">branch_name</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="dl">'</span><span class="s1">-</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>&#x000A;      <span class="nx">branch_name</span> <span class="o">=</span> <span class="nx">branch_name</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">branch_name</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>&#x000A;    <span class="p">}</span>&#x000A;&#x000A;    <span class="k">return</span> <span class="nx">branch_name</span><span class="p">;</span>&#x000A;<span class="p">}</span>&#x000A;&#x000A;<span class="nx">get_branch_name</span><span class="p">()</span></pre></div>
 </td>
 </tr>
+<tr id='//dash_ref_General macros &amp; shortcuts/Entry/Shell Prepare a squash commit or PR title message/0'>
+<td class='command'>
+<p>
+<code>;pt</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p><strong>Shell</strong> Prepare a squash commit or PR title message</p>
+</div>
+<div class='notes'><p>The currentticket is specific to our JIRA naming and assumes I am working
+on a branch that starts with the ticket ID as the first 9 characters (like
+<code>COCO-1234</code>).</p>
+
+<p>This is then used to prompt (via KM) for input with:</p>
+
+<ol>
+<li>An emoji for prefixing</li>
+<li>The ticket ID extracted from branch name</li>
+<li>The component being worked on (such as core or aggregation)</li>
+<li>A summary</li>
+</ol>
+<pre class="highlight shell"><span class="nb">alias </span><span class="nv">currentticket</span><span class="o">=</span><span class="s2">"currentbranch | cut -c1-9 | tr -d '</span><span class="se">\n</span><span class="s2">'"</span></pre>
+<p>Resulting in something like:</p>
+
+<p><em>🐛 COCO-9310: Invoicing: Fix admin key error</em></p>
+</div>
+</td>
+</tr>
 <tr id='//dash_ref_General macros &amp; shortcuts/Entry/Extract a UUID from the currently selected text/0'>
 <td class='command'>
 <p>
@@ -395,7 +436,7 @@ Git
 a bunch of time day to day.</p>
 <pre class="highlight shell"><span class="nb">alias </span><span class="nv">gp</span><span class="o">=</span><span class="s1">'git push'</span>&#x000A;<span class="nb">alias </span><span class="nv">gb</span><span class="o">=</span><span class="s1">'git branch'</span>&#x000A;<span class="nb">alias </span><span class="nv">gc</span><span class="o">=</span><span class="s1">'git checkout'</span>&#x000A;<span class="nb">alias </span><span class="nv">gmsp</span><span class="o">=</span><span class="s1">'git commit -Sjaymz@jaymz.eu -am'</span>&#x000A;<span class="nb">alias </span><span class="nv">gl</span><span class="o">=</span><span class="s1">'git log --decorate --oneline'</span>&#x000A;<span class="nb">alias </span><span class="nv">gd</span><span class="o">=</span><span class="s1">'git diff --word-diff'</span>&#x000A;<span class="nb">alias </span><span class="nv">gcl</span><span class="o">=</span><span class="s1">'git clone'</span>&#x000A;<span class="nb">alias </span><span class="nv">grb</span><span class="o">=</span><span class="s1">'git rebase -i'</span>&#x000A;<span class="nb">alias </span><span class="nv">gs</span><span class="o">=</span><span class="s1">'git stat'</span>  <span class="c"># (see alias within `~/.gitconfig`)</span>&#x000A;<span class="nb">alias </span><span class="nv">gpu</span><span class="o">=</span><span class="s1">'git pull'</span></pre>
 <p>Less commonly used:</p>
-<pre class="highlight shell"><span class="nb">alias </span><span class="nv">gittagsbydate</span><span class="o">=</span><span class="s1">'git log --tags --simplify-by-decoration --pretty="format:%ai %d"'</span>&#x000A;<span class="nb">alias </span><span class="nv">devheaddifflist</span><span class="o">=</span><span class="s1">'git diff --name-only develop..HEAD'</span><span class="p">;</span>&#x000A;</pre></div>
+<pre class="highlight shell"><span class="nb">alias </span><span class="nv">gittagsbydate</span><span class="o">=</span><span class="s1">'git log --tags --simplify-by-decoration --pretty="format:%ai %d"'</span>&#x000A;<span class="nb">alias </span><span class="nv">devheaddifflist</span><span class="o">=</span><span class="s1">'git diff --name-only develop..HEAD'</span><span class="p">;</span></pre></div>
 </td>
 </tr>
 <tr id='//dash_ref_Git/Entry/Rebase on master/0'>
@@ -453,11 +494,19 @@ a bunch of time day to day.</p>
 <p>
 <code>lb</code>
 </p>
+<p>
+<code>currentbranch</code>
+</p>
+<p>
+<code>currentticket</code>
+</p>
 </td>
 <td class='description'>
 <div class='name'><p>Last branch matching</p>
 </div>
-<div class='notes'><pre class="highlight shell"><span class="k">function </span>lastbranches <span class="o">{</span>&#x000A;    <span class="nb">local </span><span class="nv">COUNT</span><span class="o">=</span><span class="k">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">10</span><span class="k">}</span><span class="p">;</span>&#x000A;    gb <span class="nt">--sort</span><span class="o">=</span>committerdate <span class="nt">--format</span><span class="o">=</span><span class="s1">'%(refname:short)'</span> | <span class="nb">head</span> -<span class="nv">$COUNT</span>&#x000A;<span class="o">}</span>&#x000A;<span class="nb">alias </span><span class="nv">lb</span><span class="o">=</span>lastbranches<span class="p">;</span>&#x000A;&#x000A;<span class="k">function </span>gclastbranchmatching <span class="o">{</span>&#x000A;    <span class="nb">local </span><span class="nv">COUNT</span><span class="o">=</span><span class="k">${</span><span class="nv">2</span><span class="k">:-</span><span class="nv">25</span><span class="k">}</span><span class="p">;</span>&#x000A;    gc <span class="si">$(</span>lastbranches <span class="nv">$COUNT</span> | <span class="nb">grep</span> <span class="nt">-i</span> <span class="nv">$1</span><span class="si">)</span>&#x000A;<span class="o">}</span>&#x000A;<span class="nb">alias </span><span class="nv">gclb</span><span class="o">=</span>gclastbranchmatching</pre></div>
+<div class='notes'><p>These are mainly used for jumping around between branches when working
+across features or bug fixing.</p>
+<pre class="highlight shell"><span class="k">function </span>lastbranches <span class="o">{</span>&#x000A;    <span class="nb">local </span><span class="nv">COUNT</span><span class="o">=</span><span class="k">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">10</span><span class="k">}</span><span class="p">;</span>&#x000A;    gb <span class="nt">--sort</span><span class="o">=</span>committerdate <span class="nt">--format</span><span class="o">=</span><span class="s1">'%(refname:short)'</span> | <span class="nb">head</span> -<span class="nv">$COUNT</span>&#x000A;<span class="o">}</span>&#x000A;<span class="nb">alias </span><span class="nv">lb</span><span class="o">=</span>lastbranches<span class="p">;</span>&#x000A;&#x000A;<span class="k">function </span>gclastbranchmatching <span class="o">{</span>&#x000A;    <span class="nb">local </span><span class="nv">COUNT</span><span class="o">=</span><span class="k">${</span><span class="nv">2</span><span class="k">:-</span><span class="nv">25</span><span class="k">}</span><span class="p">;</span>&#x000A;    gc <span class="si">$(</span>lastbranches <span class="nv">$COUNT</span> | <span class="nb">grep</span> <span class="nt">-i</span> <span class="nv">$1</span><span class="si">)</span>&#x000A;<span class="o">}</span>&#x000A;<span class="nb">alias </span><span class="nv">gclb</span><span class="o">=</span>gclastbranchmatching&#x000A;&#x000A;<span class="c"># Useful for scripts and prefilling commit messages</span>&#x000A;<span class="nb">alias </span><span class="nv">currentbranch</span><span class="o">=</span><span class="s1">'git rev-parse --abbrev-ref HEAD'</span></pre></div>
 </td>
 </tr>
 <tr id='//dash_ref_Git/Entry/Commits across branches/0'>
@@ -573,7 +622,7 @@ enable the command input and then:</p>
 <div class='name'><p><strong>tmux</strong> Session aliases</p>
 </div>
 <div class='notes'><p>Some aliases to make creating/joining tmux sessions a little nicer.</p>
-<pre class="highlight shell"><span class="c"># Daily usage</span>&#x000A;<span class="nb">alias </span><span class="nv">tc</span><span class="o">=</span><span class="s1">'tmux new -s'</span>&#x000A;<span class="nb">alias </span><span class="nv">ta</span><span class="o">=</span><span class="s1">'tmux attach -t'</span>&#x000A;<span class="nb">alias </span><span class="nv">ts</span><span class="o">=</span><span class="s1">'tmux list-sessions'</span>&#x000A;&#x000A;<span class="c"># Useful - should use more!</span>&#x000A;<span class="nb">alias </span><span class="nv">tw</span><span class="o">=</span><span class="s1">'tmux rename-window'</span>&#x000A;&#x000A;<span class="c"># Not used as much but handy</span>&#x000A;<span class="nb">alias </span><span class="nv">tk</span><span class="o">=</span><span class="s1">'tmux kill-session -t'</span>&#x000A;<span class="nb">alias </span><span class="nv">tn</span><span class="o">=</span><span class="s1">'tmux rename-session'</span>&#x000A;&#x000A;<span class="c"># Easier to do ALT + UP/DOWN but useful for scripts</span>&#x000A;<span class="nb">alias </span><span class="nv">tsw</span><span class="o">=</span><span class="s1">'tmux switch -t'</span></pre></div>
+<pre class="highlight shell"><span class="c"># Daily usage</span>&#x000A;<span class="nb">alias </span><span class="nv">tc</span><span class="o">=</span><span class="s1">'tmux new -s'</span>&#x000A;<span class="nb">alias </span><span class="nv">ta</span><span class="o">=</span><span class="s1">'tmux attach -t'</span>&#x000A;<span class="nb">alias </span><span class="nv">ts</span><span class="o">=</span><span class="s1">'tmux list-sessions'</span>&#x000A;&#x000A;<span class="c"># Useful - should use more!</span>&#x000A;<span class="nb">alias </span><span class="nv">tw</span><span class="o">=</span><span class="s1">'tmux rename-window'</span>&#x000A;&#x000A;<span class="c"># Not used as much but handy</span>&#x000A;<span class="nb">alias </span><span class="nv">tk</span><span class="o">=</span><span class="s1">'tmux kill-session -t'</span>&#x000A;<span class="nb">alias </span><span class="nv">tn</span><span class="o">=</span><span class="s1">'tmux rename-session'</span>&#x000A;&#x000A;<span class="c"># Easier to do OPTION + UP/DOWN but useful for scripts</span>&#x000A;<span class="nb">alias </span><span class="nv">tsw</span><span class="o">=</span><span class="s1">'tmux switch -t'</span></pre></div>
 </td>
 </tr>
 <tr id='//dash_ref_Terminals &amp; Tmux/Entry/tmux Focus pane/0'>
@@ -597,7 +646,7 @@ appears but it least focuses the relevant session then.</p>
 <tr id='//dash_ref_Terminals &amp; Tmux/Entry/tmux Swap session/0'>
 <td class='command'>
 <p>
-<code>ALT + UP/DOWN</code>
+<code>OPTION + UP/DOWN</code>
 </p>
 <p>
 <code>CTRL + B, W</code>
@@ -628,7 +677,7 @@ but is worth remembering it exists.</p>
 </div>
 </td>
 </tr>
-<tr id='//dash_ref_Terminals &amp; Tmux/Entry/Repeat command/0'>
+<tr id='//dash_ref_Terminals &amp; Tmux/Entry/Repeat command at an interval/0'>
 <td class='command'>
 <p>
 <code>watch</code>
@@ -638,9 +687,39 @@ but is worth remembering it exists.</p>
 </p>
 </td>
 <td class='description'>
-<div class='name'><p>Repeat command</p>
+<div class='name'><p>Repeat command at an interval</p>
 </div>
 <div class='notes'></div>
+</td>
+</tr>
+<tr id='//dash_ref_Terminals &amp; Tmux/Entry/Repeat command on file system changes/0'>
+<td class='command'>
+<p>
+<code>fswatch [OPTS] &lt;path&gt;</code>
+</p>
+<p>
+<code>watchfile &lt;path&gt; &lt;command&gt;</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Repeat command on file system changes</p>
+</div>
+<div class='notes'><p>This uses fswatch via HomeBrew to do something similar to watch but for a
+file. fswatch itself outputs the changed paths so for <code>watchfile</code> thereʾs
+some contortion to get it running.</p>
+
+<ol>
+<li><code>-o</code> in fsatch ouputs the count of paths changed</li>
+<li>this is then piped into <code>xargs</code></li>
+<li><code>-n1</code> tells xargs to run the command <em>&quot;once per passed argument&quot;</em></li>
+<li><a href="https://unix.stackexchange.com/a/282416">-I</a> removes the fswatch passed count</li>
+</ol>
+<pre class="highlight shell"><span class="k">function </span>watchfile <span class="o">{</span>&#x000A;  fswatch <span class="nt">-o</span> <span class="nv">$1</span> | xargs <span class="nt">-n1</span> <span class="nt">-I</span><span class="o">{}</span> <span class="k">${</span><span class="p">@</span>:2<span class="k">}</span><span class="p">;</span>&#x000A;<span class="o">}</span></pre>
+<p>Here the <code>${@:2}</code> returns all the arguments from after the second, i.e.
+if we run:</p>
+<pre class="highlight shell">watchfile dev.rb cheatset generate dev.rb</pre>
+<p>Then <code>@:2</code> becomes <em><code>cheatset generate dev.rb</code></em>.</p>
+</div>
 </td>
 </tr>
 </table>
@@ -669,12 +748,58 @@ Regular Expressions
 </div>
 </section>
 <section class='category'>
-<a name='//dash_ref/Entry/grep, ripgrep &amp; related/0'></a>
 <h2 id='//dash_ref/Category/grep, ripgrep &amp; related/1'>
 grep, ripgrep & related
 </h2>
 <div class='scrollable'>
 <table>
+<tr id='//dash_ref_grep, ripgrep &amp; related/Entry/Print files matching pattern/0'>
+<td class='command'>
+<p>
+<code>rg &lt;PATTERN&gt; -l</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Print files matching pattern</p>
+</div>
+<div class='notes'><ul>
+<li><code>rg -i &#39;(class|def) Invoice&#39; -l</code>: find <code>class ...</code> or <code>def Invoice</code> case
+insensitively and just print the matching paths</li>
+</ul>
+</div>
+</td>
+</tr>
+<tr id='//dash_ref_grep, ripgrep &amp; related/Entry/Output only the matches/0'>
+<td class='command'>
+<p>
+<code>rg &lt;PATTERN&gt; -o -I</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Output only the matches</p>
+</div>
+<div class='notes'><p>Here the flags mean:</p>
+
+<ul>
+<li><code>-o</code> output only match</li>
+<li><code>-I</code> no filename</li>
+<li><code>-N</code> no line number (but not needed when piping, typically)</li>
+</ul>
+<pre class="highlight shell">rg <span class="nt">-thtml</span> <span class="nt">-i</span> <span class="s1">'(details|component).*html'</span> <span class="nt">-o</span> <span class="nt">-I</span> | <span class="nb">sort</span> | <span class="nb">uniq</span></pre></div>
+</td>
+</tr>
+<tr id='//dash_ref_grep, ripgrep &amp; related/Entry/Search Python and HTML files for pattern/0'>
+<td class='command'>
+<p>
+<code>rg -t py -t html &lt;PATTERN&gt;</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Search Python <em>and</em> HTML files for pattern</p>
+</div>
+<div class='notes'></div>
+</td>
+</tr>
 </table>
 </div>
 </section>
@@ -728,6 +853,66 @@ Alfred Custom Searches
 </td>
 <td class='description'>
 <div class='name'><p><strong>Github</strong> open platform PR #{XXX}</p>
+</div>
+<div class='notes'></div>
+</td>
+</tr>
+<tr id='//dash_ref_Alfred Custom Searches/Entry/Github search/0'>
+<td class='command'>
+<p>
+<code>gh</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p><strong>Github</strong> search</p>
+</div>
+<div class='notes'></div>
+</td>
+</tr>
+<tr id='//dash_ref_Alfred Custom Searches/Entry/Google search/0'>
+<td class='command'>
+<p>
+<code>g</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p><strong>Google</strong> search</p>
+</div>
+<div class='notes'></div>
+</td>
+</tr>
+<tr id='//dash_ref_Alfred Custom Searches/Entry/Archive.Org/0'>
+<td class='command'>
+<p>
+<code>ar</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p><strong>Archive.Org</strong></p>
+</div>
+<div class='notes'></div>
+</td>
+</tr>
+<tr id='//dash_ref_Alfred Custom Searches/Entry/Google search images/0'>
+<td class='command'>
+<p>
+<code>im</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p><strong>Google</strong> search images</p>
+</div>
+<div class='notes'></div>
+</td>
+</tr>
+<tr id='//dash_ref_Alfred Custom Searches/Entry/Wikipedia search/0'>
+<td class='command'>
+<p>
+<code>w</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p><strong>Wikipedia</strong> search</p>
 </div>
 <div class='notes'></div>
 </td>
@@ -791,6 +976,38 @@ OS X specific
 <div class='notes'></div>
 </td>
 </tr>
+<tr id='//dash_ref_OS X specific/Entry/Brightness down%2Fup by 3 steps/0'>
+<td class='command'>
+<p>
+<code>OPTION + SHIFT + 6</code>
+</p>
+<p>
+<code>OPTION + SHIFT + 7</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Brightness down/up by 3 steps</p>
+</div>
+<div class='notes'><p>Handled by a KM macro. I use this on macs with a touch bar.</p>
+</div>
+</td>
+</tr>
+<tr id='//dash_ref_OS X specific/Entry/Volume down%2Fup by 3 steps/0'>
+<td class='command'>
+<p>
+<code>OPTION + SHIFT + 8</code>
+</p>
+<p>
+<code>OPTION + SHIFT + 9</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Volume down/up by 3 steps</p>
+</div>
+<div class='notes'><p>Similar reasoning to the brightness shortcut.</p>
+</div>
+</td>
+</tr>
 </table>
 </div>
 </section>
@@ -807,16 +1024,50 @@ Media conversion
 <div class='notes'></div>
 </td>
 </tr>
-<tr id='//dash_ref_Media conversion/Entry/ffmpeg rip audo/0'>
-<td class='description' colspan='2'>
-<div class='name'><p><strong>ffmpeg</strong> rip audo</p>
+<tr id='//dash_ref_Media conversion/Entry/ffmpeg remove audo/0'>
+<td class='command'>
+<p>
+<code>ffmpeg -i &lt;src&gt; -c copy -an &lt;dst&gt;</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p><strong>ffmpeg</strong> <em>remove</em> audo</p>
 </div>
 <div class='notes'></div>
 </td>
 </tr>
-<tr id='//dash_ref_Media conversion/Entry/ffmpeg resize video/0'>
-<td class='description' colspan='2'>
-<div class='name'><p><strong>ffmpeg</strong> resize video</p>
+<tr id='//dash_ref_Media conversion/Entry/ffmpeg rip audo/0'>
+<td class='command'>
+<p>
+<code>ffmpeg -i &lt;src&gt; -vn -acodec copy &lt;dst.mp3&gt;</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p><strong>ffmpeg</strong> <em>rip</em> audo</p>
+</div>
+<div class='notes'></div>
+</td>
+</tr>
+<tr id='//dash_ref_Media conversion/Entry/ffmpeg resize video, where x, y are in pixels/0'>
+<td class='command'>
+<p>
+<code>ffmpeg -i &lt;src&gt;  -vf scale=X:Y &lt;dst&gt;</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p><strong>ffmpeg</strong> resize video, where x, y are in pixels</p>
+</div>
+<div class='notes'></div>
+</td>
+</tr>
+<tr id='//dash_ref_Media conversion/Entry/ffmpeg reverse video/0'>
+<td class='command'>
+<p>
+<code>ffmpeg -i &lt;src&gt; -vf reverse &lt;dst&gt;</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p><strong>ffmpeg</strong> reverse video</p>
 </div>
 <div class='notes'></div>
 </td>

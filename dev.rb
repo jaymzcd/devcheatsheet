@@ -192,6 +192,32 @@ END_NOTE
     end
 
     entry do
+      command ';pt'
+      name '**Shell** Prepare a squash commit or PR title message'
+      notes <<END_NOTE
+      The currentticket is specific to our JIRA naming and assumes I am working
+      on a branch that starts with the ticket ID as the first 9 characters (like
+      `COCO-1234`).
+
+      This is then used to prompt (via KM) for input with:
+
+      1. An emoji for prefixing
+      1. The ticket ID extracted from branch name
+      1. The component being worked on (such as core or aggregation)
+      1. A summary
+
+      ```sh
+      alias currentticket="currentbranch | cut -c1-9 | tr -d '\\n'"
+      ```
+
+      Resulting in something like:
+
+      _🐛 COCO-9310: Invoicing: Fix admin key error_
+
+END_NOTE
+  end
+
+    entry do
       command 'HYPER + U'
       name 'Extract a UUID from the currently selected text'
       notes <<END_NOTE
@@ -322,7 +348,6 @@ END_NOTE
       ```sh
       alias gittagsbydate='git log --tags --simplify-by-decoration --pretty="format:%ai %d"'
       alias devheaddifflist='git diff --name-only develop..HEAD';
-
       ```
 END_NOTE
     end
@@ -372,8 +397,13 @@ END_NOTE
       command 'gclb'
       command 'lastbranches'
       command 'lb'
+      command 'currentbranch'
+      command 'currentticket'
+
       name 'Last branch matching'
       notes <<END_NOTE
+      These are mainly used for jumping around between branches when working
+      across features or bug fixing.
 
       ```sh
       function lastbranches {
@@ -387,6 +417,9 @@ END_NOTE
           gc $(lastbranches $COUNT | grep -i $1)
       }
       alias gclb=gclastbranchmatching
+
+      # Useful for scripts and prefilling commit messages
+      alias currentbranch='git rev-parse --abbrev-ref HEAD'
       ```
 END_NOTE
     end
@@ -503,7 +536,7 @@ END_NOTE
       alias tk='tmux kill-session -t'
       alias tn='tmux rename-session'
 
-      # Easier to do ALT + UP/DOWN but useful for scripts
+      # Easier to do OPTION + UP/DOWN but useful for scripts
       alias tsw='tmux switch -t'
       ```
 END_NOTE
@@ -522,7 +555,7 @@ END_NOTE
     end
 
     entry do
-      command 'ALT + UP/DOWN'
+      command 'OPTION + UP/DOWN'
       command 'CTRL + B, W'
       name '**tmux** Swap session'
       notes 'This will go through each running tmux session or let you pick from a menu'
@@ -542,7 +575,40 @@ END_NOTE
     entry do
       command 'watch'
       command 'watch -n <secs>'
-      name 'Repeat command'
+      name 'Repeat command at an interval'
+    end
+
+    entry do
+      command 'fswatch [OPTS] <path>'
+      command 'watchfile <path> <command>'
+      name 'Repeat command on file system changes'
+      notes <<END_NOTE
+
+      This uses fswatch via HomeBrew to do something similar to watch but for a
+      file. fswatch itself outputs the changed paths so for `watchfile` thereʾs
+      some contortion to get it running.
+
+      1. `-o` in fsatch ouputs the count of paths changed
+      1. this is then piped into `xargs`
+      1. `-n1` tells xargs to run the command _"once per passed argument"_
+      1. [-I](https://unix.stackexchange.com/a/282416) removes the fswatch passed count
+
+      ```sh
+      function watchfile {
+        fswatch -o $1 | xargs -n1 -I{} ${@:2};
+      }
+      ```
+
+      Here the `${@:2}` returns all the arguments from after the second, i.e.
+      if we run:
+
+      ```sh
+      watchfile dev.rb cheatset generate dev.rb
+      ```
+
+      Then `@:2` becomes _`cheatset generate dev.rb`_.
+
+END_NOTE
     end
 
   end
@@ -560,6 +626,38 @@ END_NOTE
 
   category do
     id 'grep, ripgrep & related'
+
+    entry do
+      command 'rg <PATTERN> -l'
+      name 'Print files matching pattern'
+      notes <<END_NOTE
+
+      * `rg -i '(class|def) Invoice' -l`: find `class ...` or `def Invoice` case
+        insensitively and just print the matching paths
+END_NOTE
+    end
+
+    entry do
+      command 'rg <PATTERN> -o -I'
+      name 'Output only the matches'
+      notes <<END_NOTE
+      Here the flags mean:
+
+      * `-o` output only match
+      * `-I` no filename
+      * `-N` no line number (but not needed when piping, typically)
+
+      ```sh
+      rg -thtml -i '(details|component).*html' -o -I | sort | uniq
+      ```
+END_NOTE
+    end
+
+    entry do
+      command 'rg -t py -t html <PATTERN>'
+      name 'Search Python _and_ HTML files for pattern'
+    end
+
   end
 
   category do
@@ -583,6 +681,31 @@ END_NOTE
     entry do
       command 'pr'
       name '**Github** open platform PR #{XXX}'
+    end
+
+    entry do
+      command 'gh'
+      name '**Github** search'
+    end
+
+    entry do
+      command 'g'
+      name '**Google** search'
+    end
+
+    entry do
+      command 'ar'
+      name '**Archive.Org**'
+    end
+
+    entry do
+      command 'im'
+      name '**Google** search images'
+    end
+
+    entry do
+      command 'w'
+      name '**Wikipedia** search'
     end
 
   end
@@ -610,6 +733,20 @@ END_NOTE
       name 'Copy & paste buffer access from terminal'
     end
 
+    entry do
+      command 'OPTION + SHIFT + 6'
+      command 'OPTION + SHIFT + 7'
+      name 'Brightness down/up by 3 steps'
+      notes 'Handled by a KM macro. I use this on macs with a touch bar.'
+    end
+
+    entry do
+      command 'OPTION + SHIFT + 8'
+      command 'OPTION + SHIFT + 9'
+      name 'Volume down/up by 3 steps'
+      notes 'Similar reasoning to the brightness shortcut.'
+    end
+
   end
 
   category do
@@ -620,11 +757,23 @@ END_NOTE
     end
 
     entry do
-      name '**ffmpeg** rip audo'
+      command 'ffmpeg -i <src> -c copy -an <dst>'
+      name '**ffmpeg** _remove_ audo'
     end
 
     entry do
-      name '**ffmpeg** resize video'
+      command 'ffmpeg -i <src> -vn -acodec copy <dst.mp3>'
+      name '**ffmpeg** _rip_ audo'
+    end
+
+    entry do
+      command 'ffmpeg -i <src>  -vf scale=X:Y <dst>'
+      name '**ffmpeg** resize video, where x, y are in pixels'
+    end
+
+    entry do
+      command 'ffmpeg -i <src> -vf reverse <dst>'
+      name '**ffmpeg** reverse video'
     end
 
     entry do
