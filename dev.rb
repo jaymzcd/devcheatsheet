@@ -19,12 +19,15 @@ END_CSS
   * my professional life which is mainly full stack work with a focus towards
     backends written in Python. I tend to cover everything from debugging,
     front end work in React/Vue/vanilla, scripting, ops - really anything
-    technical in a variety of langauges, platforms and styles.
+    technical in a variety of languages, platforms and styles.
   * my mathematics work. Iʾve recently completed a BSc with the Open University
     and am now working towards a Masters with a 50-50 split across applied and
     pure disciplines. I do a lot of my study work using Python (sympy, scipy etc)
     and typeset everything in LaTeX (using [Lyx](https://www.lyx.org/))
-  * my personalizations to defaults on operating systems, shells etc.
+  * my personalizations to defaults on operating systems, shells etc. I try to
+    aim for consistency so heavily lean on cross platform tooling or modified
+    key bindings and command line utilities so that I have roughly the same
+    tool chain be it Mac, Linux, Android, Windows or whatever else.
 
   I have remapped some of the default key bindings that I use a lot which is
   partly why I̕ʾve created this. Any command starting with a `;` is typically
@@ -343,6 +346,21 @@ END_NOTE
     end
 
     entry do
+      command 'interact'
+      name 'Simple interactive slider'
+      notes <<END_NOTE
+      See below about how to ensure that `ipywidgets` is actually enabled.
+
+      ```python
+      from ipywidgets import interact
+
+      def f(x):
+          return x
+      interact(f, x=10);
+      ```
+END_NOTE
+
+    entry do
       command 'widgets.Button'
       command 'widgets.Text'
       command 'widgets.Output'
@@ -355,6 +373,19 @@ END_NOTE
       This requires [`ipywidgets`](https://ipywidgets.readthedocs.io/en/latest/).
       This recepie is a bit beyond a trival "input/output" and provides
       a counter and display of multiple items which can then be cleared.
+
+      ⚠️ This requires that the widgets extension has been enabled first!
+
+      For notebooks:
+
+      ```sh
+      jupyter nbextension enable --py widgetsnbextension
+      ```
+
+      For Jupyter _Lab_ first
+      [enable the experimental manager](https://jupyterlab.readthedocs.io/en/stable/user/extensions.html#using-the-extension-manager)
+      and then just click install (probably the top package listed). Then build
+      and wait until complete.
 
       The basic technique is:
 
@@ -644,7 +675,7 @@ END_NOTE
       command 'web_pdb'
       name 'Nicer debuggers'
       notes <<END_NOTE
-      I typically use `ipdb` to drop into an ipython/juputer console but thereʾs
+      I typically use `ipdb` to drop into an ipython/jupyter console but thereʾs
       also [`web_pdb`](https://github.com/romanvm/python-web-pdb) which gives a
       UI with watch variables and the like. I should try and use that more when
       doing a more complex bit of debugging.

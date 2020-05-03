@@ -496,6 +496,14 @@ cell with a &quot;narrative&quot; style.</p>
 This recepie is a bit beyond a trival &quot;input/output&quot; and provides
 a counter and display of multiple items which can then be cleared.</p>
 
+<p>⚠️ This requires that the widgets extension has been enabled first!</p>
+
+<p>For notebooks:</p>
+<pre class="highlight shell">jupyter nbextension <span class="nb">enable</span> <span class="nt">--py</span> widgetsnbextension</pre>
+<p>For Jupyter <em>Lab</em> first
+<a href="https://jupyterlab.readthedocs.io/en/stable/user/extensions.html#using-the-extension-manager">enable the experimental manager</a>
+and then just click install (probably the top package listed).</p>
+
 <p>The basic technique is:</p>
 
 <ol>
@@ -724,7 +732,7 @@ PDB & Debugging
 <td class='description'>
 <div class='name'><p>Nicer debuggers</p>
 </div>
-<div class='notes'><p>I typically use <code>ipdb</code> to drop into an ipython/juputer console but thereʾs
+<div class='notes'><p>I typically use <code>ipdb</code> to drop into an ipython/jupyter console but thereʾs
 also <a href="https://github.com/romanvm/python-web-pdb"><code>web_pdb</code></a> which gives a
 UI with watch variables and the like. I should try and use that more when
 doing a more complex bit of debugging.</p>

@@ -331,6 +331,12 @@ pipenv --python 3.8.2 install --skip-lock
 Using pipenv directly means no longer having to deal with virutalenv creation
 by hand. It just works. Go with that these days!
 
+## Jupyter configuration
+
+* `jupyter nbextension enable --py widgetsnbextension` for `ipywidgets` in notebooks
+* For _lab_ - enable extension manager and then install and await build of
+  ipywidgets from the UI.
+
 # VueJS
 
 * https://cli.vuejs.org/guide/installation.html
