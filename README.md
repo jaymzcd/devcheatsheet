@@ -15,5 +15,6 @@ For how and what I use on my Mac for work in general and the sort of UI
 customizations I make to the environment have a look at 
 [OSX Setup](osx_setup.md).
 
+A simple syntax coloring file for Sublime for cheatsets:
 
-
+![](cheatset_syntax.png)
