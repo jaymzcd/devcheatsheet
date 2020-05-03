@@ -292,6 +292,134 @@ END_NOTE
 END_NOTE
     end
 
+    entry do
+      command 'Markdown("...")'
+      command 'Image(url="")'
+      command 'HTML("...")'
+
+      name 'Include HTML, LaTeX, Images and more'
+      notes <<END_NOTE
+      You can include any HTML you want within the markdown section. Useful
+      for coloring in titles.
+
+      ```python
+
+      from IPython.display import Image, HTML, Markdown
+
+      Markdown("""
+      ## <font color="dodgerblue">Q1a</font>
+
+      This is a lead in section that will be a paragraph within the Jupyter cell.
+
+      * A formula: $\\frac{dy}{dx} = exp^{i\\pi}$
+      * This is _not_ as important <small>(in theory)</small>
+
+      Image(url="http://jaymz.eu/fancy.png")
+
+      """)
+      ```
+
+      Would give a blue title and then output in a bullet list a MathJax rendered
+      expression. This is useful when writing out full solutions in a single
+      cell with a "narrative" style.
+END_NOTE
+    end
+
+    entry do
+      command 'pd.set_option'
+      name '**Pandas** Show all table rows (or a custom limit)'
+      notes <<END_NOTE
+
+      ```python
+      import pandas as pd
+
+      pd.set_option('display.height', 1000)
+      pd.set_option('display.max_rows', 500)
+      pd.set_option('display.max_columns', 500)
+      pd.set_option('display.width', 1000)
+      ```
+
+END_NOTE
+    end
+
+    entry do
+      command 'widgets.Button'
+      command 'widgets.Text'
+      command 'widgets.Output'
+      command 'display'
+      command 'clear_output'
+
+      name 'Create a clearable input widget that updates the display'
+      notes <<END_NOTE
+
+      This requires [`ipywidgets`](https://ipywidgets.readthedocs.io/en/latest/).
+      This recepie is a bit beyond a trival "input/output" and provides
+      a counter and display of multiple items which can then be cleared.
+
+      The basic technique is:
+
+      1. Create a `widgets.<Input>` item with relevant defaults
+      1. Add a `widgets.Button` to control this
+      1. Add a callback for the button and bind using `.on_click`
+      1. Combine the widgets as needed with an `ui = widgets.HBox(...)`
+      1. Create an output if desired with `widgets.Output`
+      1. Render it to the cell using `display(ui, output)
+
+      This method allows for the cell output buffer to be controlled and changed
+      easily (e.g. clearing it).
+
+      ```python
+      # Example of an interactive widget layout that can take
+      # user input and parse it into an equation, do things and
+      # render back output in a useful way.
+
+      import ipywidgets as widgets
+
+      from IPython.display import display, Markdown
+      from sympy.parsing.sympy_parser import parse_expr
+      from sympy import latex, diff
+
+      input_fn = widgets.Text(
+          value='1+x+x**2',
+          placeholder='Type something',
+          description='Function',
+      )
+
+      go_btn = widgets.Button(description="Go")
+      clear_btn = widgets.Button(description="Clear")
+
+      output = widgets.Output()
+      count = 0
+
+      def go_callback(widget):
+          global count
+          fn = parse_expr(input_fn.value)
+          count += 1
+
+          with output:
+              display(Markdown("""
+      ## Expression {count}
+
+      * Input: ${input}$
+      * Derivative: ${derivative}$
+              """.format(count=count,
+                         input=latex(fn),
+                         derivative=latex(diff(fn, 'x')))))
+
+      def clear_callback(widget):
+          with output:
+              output.clear_output()
+
+
+      go_btn.on_click(go_callback)
+      clear_btn.on_click(clear_callback)
+
+      box = widgets.HBox([input_fn, go_btn, clear_btn])
+      display(box, output)
+      ```
+END_NOTE
+    end
+
   end
 
   category do
@@ -862,18 +990,77 @@ END_NOTE
   end
 
   category do
-    id 'LaTeX, Lyx, Typesetting'
+    id 'Math: LaTeX & Symbolic Algebra'
+
+    entry do
+      command 'detexify'
+      name '**Latex** Finding a symbol'
+      notes <<END_NOTE
+      * [Detexify](https://detexify.kirelabs.org/classify.html) - draw in browser
+      * [CTAN Comprehensive List](http://tug.ctan.org/info/symbols/comprehensive/symbols-a4.pdf) - full list as a PDF document
+      * [Overleaf main symbols](https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols) - the main ones that might be useful, along with Greek
+END_NOTE
+    end
 
     entry do
       command '\partial'
       command '\frac{dx}{dy}'
       command 'y^\prime'
-      name 'Derivatives'
+      name '**Latex** Derivatives'
     end
 
     entry do
       command '\align'
-      name 'Alignment'
+      name '**Latex** Alignment'
+    end
+
+    entry do
+      command '[as|to]_terms'
+      command '[as|to]_func'
+
+      name '**Sympy** Calculus with implicit functions'
+      notes <<END_NOTE
+
+      This is just a recepie I tend to do a lot when working with Functionals
+      as part of the M820 advanced calculus module. Since the symbolic algebra
+      within Sympy works with explict functions when differentiating but most
+      of the typical work involves using the implict form, _F(x,y,y')_ itʾs
+      convenient to be able to do these manipulations and jump back and forth
+      without having to write lots of substitutions each time.
+
+      ```python
+      from sympy import symbols, Function, diff
+
+      x, y, dy, d2y = symbols('x y y^\\prime y^{\\prime\\prime}')
+      Yx = Function('Y')(x)
+      DYx = diff(Yx)
+      D2Yx = diff(DYx)
+
+      to_func = {
+          x: x,
+          y: Yx,
+          dy: DYx,
+          d2y: D2Yx,
+      }
+      as_func = lambda e: e.subs(to_func)
+
+      # Unsure how to get around the need to do the d2y term first
+      to_terms = {v: k for k, v in to_func.items()}
+      as_terms = lambda e: e.subs({D2Yx: d2y}).subs(to_terms)
+
+      # Combine into a wrapper so we can go from an expression with implicit functions
+      # to actual functions, do our transformation and then return back to implict terms
+      apply = lambda fn, e: as_terms(fn(as_func(e)))
+
+      # Eg:
+      F = dy * cos(x)
+      df = apply(diff, F)
+
+      # Results in :
+      # `-y^\\prime*sin(x) + y^{\\prime\\prime}*cos(x)`
+
+      ```
+END_NOTE
     end
 
   end

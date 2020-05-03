@@ -31,6 +31,9 @@
 <link href='//dash_ref/Category/Jupyter/1'>
 <link href='//dash_ref_Jupyter/Entry/Autoreloading of modules/0'>
 <link href='//dash_ref_Jupyter/Entry/Show all cell output/0'>
+<link href='//dash_ref_Jupyter/Entry/Include HTML, LaTeX, Images and more/0'>
+<link href='//dash_ref_Jupyter/Entry/Pandas Show all table rows (or a custom limit)/0'>
+<link href='//dash_ref_Jupyter/Entry/Create a clearable input widget that updates the display/0'>
 <link href='//dash_ref/Category/Testing/1'>
 <link href='//dash_ref_Testing/Entry/Watch a test/0'>
 <link href='//dash_ref_Testing/Entry/Coverage Reporting/0'>
@@ -92,9 +95,11 @@
 <link href='//dash_ref_Useful Python Libraries/Entry/Color console output using ascii escape codes/0'>
 <link href='//dash_ref/Category/SQL/1'>
 <link href='//dash_ref_SQL/Entry/Windowing/0'>
-<link href='//dash_ref/Category/LaTeX, Lyx, Typesetting/1'>
-<link href='//dash_ref_LaTeX, Lyx, Typesetting/Entry/Derivatives/0'>
-<link href='//dash_ref_LaTeX, Lyx, Typesetting/Entry/Alignment/0'>
+<link href='//dash_ref/Category/Math: LaTeX &amp; Symbolic Algebra/1'>
+<link href='//dash_ref_Math: LaTeX &amp; Symbolic Algebra/Entry/Latex Finding a symbol/0'>
+<link href='//dash_ref_Math: LaTeX &amp; Symbolic Algebra/Entry/Latex Derivatives/0'>
+<link href='//dash_ref_Math: LaTeX &amp; Symbolic Algebra/Entry/Latex Alignment/0'>
+<link href='//dash_ref_Math: LaTeX &amp; Symbolic Algebra/Entry/Sympy Calculus with implicit functions/0'>
 <link href='//dash_ref/Category/OS X specific/1'>
 <link href='//dash_ref_OS X specific/Entry/Avoid sleeping, this is basically a command line version of InsomniaX and ships with OS-X./0'>
 <link href='//dash_ref_OS X specific/Entry/Copy &amp; paste buffer access from terminal/0'>
@@ -428,6 +433,83 @@ I use the <code>;autoreload</code> macro to write out in any session:</p>
 I work with my maths tends to involve several steps I want to just output
 using <code>Markdown(...)</code> so I find it helpful to see all of these per cell.</p>
 <pre class="highlight python"><span class="kn">from</span> <span class="nn">IPython.core.interactiveshell</span> <span class="kn">import</span> <span class="n">InteractiveShell</span>&#x000A;<span class="n">InteractiveShell</span><span class="p">.</span><span class="n">ast_node_interactivity</span> <span class="o">=</span> <span class="s">"all"</span></pre></div>
+</td>
+</tr>
+<tr id='//dash_ref_Jupyter/Entry/Include HTML, LaTeX, Images and more/0'>
+<td class='command'>
+<p>
+<code>Markdown(&quot;...&quot;)</code>
+</p>
+<p>
+<code>Image(url=&quot;&quot;)</code>
+</p>
+<p>
+<code>HTML(&quot;...&quot;)</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Include HTML, LaTeX, Images and more</p>
+</div>
+<div class='notes'><p>You can include any HTML you want within the markdown section. Useful
+for coloring in titles.</p>
+<pre class="highlight python">&#x000A;<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">Markdown</span>&#x000A;&#x000A;<span class="n">Markdown</span><span class="p">(</span><span class="s">"""&#x000A;## &lt;font color="dodgerblue"&gt;Q1a&lt;/font&gt;&#x000A;&#x000A;This is a lead in section that will be a paragraph within the Jupyter cell.&#x000A;&#x000A;* A formula: $</span><span class="si">\</span><span class="se">f</span><span class="s">rac{dy}{dx} = exp^{i</span><span class="si">\</span><span class="err">pi}$</span><span class="se">&#x000A;</span><span class="s">* This is _not_ as important &lt;small&gt;(in theory)&lt;/small&gt;&#x000A;&#x000A;Image(url="http://jaymz.eu/fancy.png")&#x000A;&#x000A;"""</span><span class="p">)</span></pre>
+<p>Would give a blue title and then output in a bullet list a MathJax rendered
+expression. This is useful when writing out full solutions in a single
+cell with a &quot;narrative&quot; style.</p>
+</div>
+</td>
+</tr>
+<tr id='//dash_ref_Jupyter/Entry/Pandas Show all table rows (or a custom limit)/0'>
+<td class='command'>
+<p>
+<code>pd.set_option</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p><strong>Pandas</strong> Show all table rows (or a custom limit)</p>
+</div>
+<div class='notes'><pre class="highlight python"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>&#x000A;&#x000A;<span class="n">pd</span><span class="p">.</span><span class="n">set_option</span><span class="p">(</span><span class="s">'display.height'</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>&#x000A;<span class="n">pd</span><span class="p">.</span><span class="n">set_option</span><span class="p">(</span><span class="s">'display.max_rows'</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>&#x000A;<span class="n">pd</span><span class="p">.</span><span class="n">set_option</span><span class="p">(</span><span class="s">'display.max_columns'</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>&#x000A;<span class="n">pd</span><span class="p">.</span><span class="n">set_option</span><span class="p">(</span><span class="s">'display.width'</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span></pre></div>
+</td>
+</tr>
+<tr id='//dash_ref_Jupyter/Entry/Create a clearable input widget that updates the display/0'>
+<td class='command'>
+<p>
+<code>widgets.Button</code>
+</p>
+<p>
+<code>widgets.Text</code>
+</p>
+<p>
+<code>widgets.Output</code>
+</p>
+<p>
+<code>display</code>
+</p>
+<p>
+<code>clear_output</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Create a clearable input widget that updates the display</p>
+</div>
+<div class='notes'><p>This requires <a href="https://ipywidgets.readthedocs.io/en/latest/"><code>ipywidgets</code></a>.
+This recepie is a bit beyond a trival &quot;input/output&quot; and provides
+a counter and display of multiple items which can then be cleared.</p>
+
+<p>The basic technique is:</p>
+
+<ol>
+<li>Create a <code>widgets.&lt;Input&gt;</code> item with relevant defaults</li>
+<li>Add a <code>widgets.Button</code> to control this</li>
+<li>Add a callback for the button and bind using <code>.on_click</code></li>
+<li>Combine the widgets as needed with an <code>ui = widgets.HBox(...)</code></li>
+<li>Create an output if desired with <code>widgets.Output</code></li>
+<li>Render it to the cell using `display(ui, output)</li>
+</ol>
+
+<p>This method allows for the cell output buffer to be controlled and changed
+easily (e.g. clearing it).</p>
+<pre class="highlight python"><span class="c1"># Example of an interactive widget layout that can take&#x000A;# user input and parse it into an equation, do things and&#x000A;# render back output in a useful way.&#x000A;</span>&#x000A;<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="n">widgets</span>&#x000A;&#x000A;<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>&#x000A;<span class="kn">from</span> <span class="nn">sympy.parsing.sympy_parser</span> <span class="kn">import</span> <span class="n">parse_expr</span>&#x000A;<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">latex</span><span class="p">,</span> <span class="n">diff</span>&#x000A;&#x000A;<span class="n">input_fn</span> <span class="o">=</span> <span class="n">widgets</span><span class="p">.</span><span class="n">Text</span><span class="p">(</span>&#x000A;    <span class="n">value</span><span class="o">=</span><span class="s">'1+x+x**2'</span><span class="p">,</span>&#x000A;    <span class="n">placeholder</span><span class="o">=</span><span class="s">'Type something'</span><span class="p">,</span>&#x000A;    <span class="n">description</span><span class="o">=</span><span class="s">'Function'</span><span class="p">,</span>&#x000A;<span class="p">)</span>&#x000A;&#x000A;<span class="n">go_btn</span> <span class="o">=</span> <span class="n">widgets</span><span class="p">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">"Go"</span><span class="p">)</span>&#x000A;<span class="n">clear_btn</span> <span class="o">=</span> <span class="n">widgets</span><span class="p">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">"Clear"</span><span class="p">)</span>&#x000A;&#x000A;<span class="n">output</span> <span class="o">=</span> <span class="n">widgets</span><span class="p">.</span><span class="n">Output</span><span class="p">()</span>&#x000A;<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>&#x000A;&#x000A;<span class="k">def</span> <span class="nf">go_callback</span><span class="p">(</span><span class="n">widget</span><span class="p">):</span>&#x000A;    <span class="k">global</span> <span class="n">count</span>&#x000A;    <span class="n">fn</span> <span class="o">=</span> <span class="n">parse_expr</span><span class="p">(</span><span class="n">input_fn</span><span class="p">.</span><span class="n">value</span><span class="p">)</span>&#x000A;    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>&#x000A;&#x000A;    <span class="k">with</span> <span class="n">output</span><span class="p">:</span>&#x000A;        <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s">"""&#x000A;## Expression {count}&#x000A;&#x000A;* Input: ${input}$&#x000A;* Derivative: ${derivative}$&#x000A;        """</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="n">count</span><span class="p">,</span>&#x000A;                   <span class="nb">input</span><span class="o">=</span><span class="n">latex</span><span class="p">(</span><span class="n">fn</span><span class="p">),</span>&#x000A;                   <span class="n">derivative</span><span class="o">=</span><span class="n">latex</span><span class="p">(</span><span class="n">diff</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="s">'x'</span><span class="p">)))))</span>&#x000A;&#x000A;<span class="k">def</span> <span class="nf">clear_callback</span><span class="p">(</span><span class="n">widget</span><span class="p">):</span>&#x000A;    <span class="k">with</span> <span class="n">output</span><span class="p">:</span>&#x000A;        <span class="n">output</span><span class="p">.</span><span class="n">clear_output</span><span class="p">()</span>&#x000A;&#x000A;&#x000A;<span class="n">go_btn</span><span class="p">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">go_callback</span><span class="p">)</span>&#x000A;<span class="n">clear_btn</span><span class="p">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">clear_callback</span><span class="p">)</span>&#x000A;&#x000A;<span class="n">box</span> <span class="o">=</span> <span class="n">widgets</span><span class="p">.</span><span class="n">HBox</span><span class="p">([</span><span class="n">input_fn</span><span class="p">,</span> <span class="n">go_btn</span><span class="p">,</span> <span class="n">clear_btn</span><span class="p">])</span>&#x000A;<span class="n">display</span><span class="p">(</span><span class="n">box</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span></pre></div>
 </td>
 </tr>
 </table>
@@ -1217,12 +1299,29 @@ SQL
 </div>
 </section>
 <section class='category'>
-<h2 id='//dash_ref/Category/LaTeX, Lyx, Typesetting/1'>
-LaTeX, Lyx, Typesetting
+<h2 id='//dash_ref/Category/Math: LaTeX &amp; Symbolic Algebra/1'>
+Math: LaTeX & Symbolic Algebra
 </h2>
 <div class='scrollable'>
 <table>
-<tr id='//dash_ref_LaTeX, Lyx, Typesetting/Entry/Derivatives/0'>
+<tr id='//dash_ref_Math: LaTeX &amp; Symbolic Algebra/Entry/Latex Finding a symbol/0'>
+<td class='command'>
+<p>
+<code>detexify</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p><strong>Latex</strong> Finding a symbol</p>
+</div>
+<div class='notes'><ul>
+<li><a href="https://detexify.kirelabs.org/classify.html">Detexify</a> - draw in browser</li>
+<li><a href="http://tug.ctan.org/info/symbols/comprehensive/symbols-a4.pdf">CTAN Comprehensive List</a> - full list as a PDF document</li>
+<li><a href="https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols">Overleaf main symbols</a> - the main ones that might be useful, along with Greek</li>
+</ul>
+</div>
+</td>
+</tr>
+<tr id='//dash_ref_Math: LaTeX &amp; Symbolic Algebra/Entry/Latex Derivatives/0'>
 <td class='command'>
 <p>
 <code>\partial</code>
@@ -1235,21 +1334,42 @@ LaTeX, Lyx, Typesetting
 </p>
 </td>
 <td class='description'>
-<div class='name'><p>Derivatives</p>
+<div class='name'><p><strong>Latex</strong> Derivatives</p>
 </div>
 <div class='notes'></div>
 </td>
 </tr>
-<tr id='//dash_ref_LaTeX, Lyx, Typesetting/Entry/Alignment/0'>
+<tr id='//dash_ref_Math: LaTeX &amp; Symbolic Algebra/Entry/Latex Alignment/0'>
 <td class='command'>
 <p>
 <code>\align</code>
 </p>
 </td>
 <td class='description'>
-<div class='name'><p>Alignment</p>
+<div class='name'><p><strong>Latex</strong> Alignment</p>
 </div>
 <div class='notes'></div>
+</td>
+</tr>
+<tr id='//dash_ref_Math: LaTeX &amp; Symbolic Algebra/Entry/Sympy Calculus with implicit functions/0'>
+<td class='command'>
+<p>
+<code>[as|to]_terms</code>
+</p>
+<p>
+<code>[as|to]_func</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p><strong>Sympy</strong> Calculus with implicit functions</p>
+</div>
+<div class='notes'><p>This is just a recepie I tend to do a lot when working with Functionals
+as part of the M820 advanced calculus module. Since the symbolic algebra
+within Sympy works with explict functions when differentiating but most
+of the typical work involves using the implict form, <em>F(x,y,y&#39;)</em> itʾs
+convenient to be able to do these manipulations and jump back and forth
+without having to write lots of substitutions each time.</p>
+<pre class="highlight python"><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">Function</span><span class="p">,</span> <span class="n">diff</span>&#x000A;&#x000A;<span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">d2y</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s">'x y y^</span><span class="si">\</span><span class="err">p</span><span class="se">r</span><span class="s">ime y^{</span><span class="si">\</span><span class="err">p</span><span class="se">r</span><span class="s">ime</span><span class="si">\</span><span class="err">p</span><span class="se">r</span><span class="s">ime}'</span><span class="p">)</span>&#x000A;<span class="n">Yx</span> <span class="o">=</span> <span class="n">Function</span><span class="p">(</span><span class="s">'Y'</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>&#x000A;<span class="n">DYx</span> <span class="o">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">Yx</span><span class="p">)</span>&#x000A;<span class="n">D2Yx</span> <span class="o">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">DYx</span><span class="p">)</span>&#x000A;&#x000A;<span class="n">to_func</span> <span class="o">=</span> <span class="p">{</span>&#x000A;    <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span>&#x000A;    <span class="n">y</span><span class="p">:</span> <span class="n">Yx</span><span class="p">,</span>&#x000A;    <span class="n">dy</span><span class="p">:</span> <span class="n">DYx</span><span class="p">,</span>&#x000A;    <span class="n">d2y</span><span class="p">:</span> <span class="n">D2Yx</span><span class="p">,</span>&#x000A;<span class="p">}</span>&#x000A;<span class="n">as_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">e</span><span class="p">.</span><span class="n">subs</span><span class="p">(</span><span class="n">to_func</span><span class="p">)</span>&#x000A;&#x000A;<span class="c1"># Unsure how to get around the need to do the d2y term first&#x000A;</span><span class="n">to_terms</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">to_func</span><span class="p">.</span><span class="n">items</span><span class="p">()}</span>&#x000A;<span class="n">as_terms</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">e</span><span class="p">.</span><span class="n">subs</span><span class="p">({</span><span class="n">D2Yx</span><span class="p">:</span> <span class="n">d2y</span><span class="p">}).</span><span class="n">subs</span><span class="p">(</span><span class="n">to_terms</span><span class="p">)</span>&#x000A;&#x000A;<span class="c1"># Combine into a wrapper so we can go from an expression with implicit functions&#x000A;# to actual functions, do our transformation and then return back to implict terms&#x000A;</span><span class="nb">apply</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">fn</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span> <span class="n">as_terms</span><span class="p">(</span><span class="n">fn</span><span class="p">(</span><span class="n">as_func</span><span class="p">(</span><span class="n">e</span><span class="p">)))</span>&#x000A;&#x000A;<span class="c1"># Eg:&#x000A;</span><span class="n">F</span> <span class="o">=</span> <span class="n">dy</span> <span class="o">*</span> <span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>&#x000A;<span class="n">df</span> <span class="o">=</span> <span class="nb">apply</span><span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="n">F</span><span class="p">)</span>&#x000A;&#x000A;<span class="c1"># Results in :&#x000A;# `-y^\prime*sin(x) + y^{\prime\prime}*cos(x)`&#x000A;</span></pre></div>
 </td>
 </tr>
 </table>
