@@ -36,6 +36,7 @@
 <link href='//dash_ref/Category/PDB &amp; Debugging/1'>
 <link href='//dash_ref_PDB &amp; Debugging/Entry/Pretty print variable/0'>
 <link href='//dash_ref_PDB &amp; Debugging/Entry/Show arguments at this point/0'>
+<link href='//dash_ref_PDB &amp; Debugging/Entry/Nicer debuggers/0'>
 <link href='//dash_ref/Category/Terminals &amp; Tmux/1'>
 <link href='//dash_ref_Terminals &amp; Tmux/Entry/tmux Capture scrollback to file/0'>
 <link href='//dash_ref_Terminals &amp; Tmux/Entry/tmux Session aliases/0'>
@@ -64,6 +65,8 @@
 <link href='//dash_ref/Entry/AWS/0'>
 <link href='//dash_ref/Category/Docker/1'>
 <link href='//dash_ref/Entry/Docker/0'>
+<link href='//dash_ref/Category/Useful Python Libraries/1'>
+<link href='//dash_ref_Useful Python Libraries/Entry/Color console output using ascii escape codes/0'>
 <link href='//dash_ref/Category/OS X specific/1'>
 <link href='//dash_ref_OS X specific/Entry/Avoid sleeping, this is basically a command line version of InsomniaX and ships with OS-X./0'>
 <link href='//dash_ref_OS X specific/Entry/Copy &amp; paste buffer access from terminal/0'>
@@ -298,7 +301,7 @@ to a suitable name for a git branch that includes the ticket ID at the start.</p
 <td class='description'>
 <div class='name'><p><strong>Shell</strong> Prepare a squash commit or PR title message</p>
 </div>
-<div class='notes'><p>The currentticket is specific to our JIRA naming and assumes I am working
+<div class='notes'><p>The <code>currentticket</code> is specific to our JIRA naming and assumes I am working
 on a branch that starts with the ticket ID as the first 9 characters (like
 <code>COCO-1234</code>).</p>
 
@@ -497,9 +500,6 @@ a bunch of time day to day.</p>
 <p>
 <code>currentbranch</code>
 </p>
-<p>
-<code>currentticket</code>
-</p>
 </td>
 <td class='description'>
 <div class='name'><p>Last branch matching</p>
@@ -574,6 +574,25 @@ PDB & Debugging
 <div class='name'><p>Show arguments at this point</p>
 </div>
 <div class='notes'><p>Dumps out the current functions arguments passed</p>
+</div>
+</td>
+</tr>
+<tr id='//dash_ref_PDB &amp; Debugging/Entry/Nicer debuggers/0'>
+<td class='command'>
+<p>
+<code>ipdb</code>
+</p>
+<p>
+<code>web_pdb</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Nicer debuggers</p>
+</div>
+<div class='notes'><p>I typically use <code>ipdb</code> to drop into an ipython/juputer console but thereʾs
+also <a href="https://github.com/romanvm/python-web-pdb"><code>web_pdb</code></a> which gives a
+UI with watch variables and the like. I should try and use that more when
+doing a more complex bit of debugging.</p>
 </div>
 </td>
 </tr>
@@ -937,6 +956,27 @@ Docker
 </h2>
 <div class='scrollable'>
 <table>
+</table>
+</div>
+</section>
+<section class='category'>
+<h2 id='//dash_ref/Category/Useful Python Libraries/1'>
+Useful Python Libraries
+</h2>
+<div class='scrollable'>
+<table>
+<tr id='//dash_ref_Useful Python Libraries/Entry/Color console output using ascii escape codes/0'>
+<td class='command'>
+<p>
+<code>colorama</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p><a href="https://github.com/tartley/colorama">Color console output</a> using ascii escape codes</p>
+</div>
+<div class='notes'><pre class="highlight python"><span class="kn">from</span> <span class="nn">colorama</span> <span class="kn">import</span> <span class="n">Fore</span><span class="p">,</span> <span class="n">Back</span><span class="p">,</span> <span class="n">Style</span>&#x000A;<span class="k">print</span><span class="p">(</span><span class="n">Fore</span><span class="p">.</span><span class="n">RED</span> <span class="o">+</span> <span class="s">'some red text'</span><span class="p">)</span>&#x000A;<span class="k">print</span><span class="p">(</span><span class="n">Back</span><span class="p">.</span><span class="n">GREEN</span> <span class="o">+</span> <span class="s">'and with a green background'</span><span class="p">)</span>&#x000A;<span class="k">print</span><span class="p">(</span><span class="n">Style</span><span class="p">.</span><span class="n">DIM</span> <span class="o">+</span> <span class="s">'and in dim text'</span><span class="p">)</span>&#x000A;<span class="k">print</span><span class="p">(</span><span class="n">Style</span><span class="p">.</span><span class="n">RESET_ALL</span><span class="p">)</span>&#x000A;<span class="k">print</span><span class="p">(</span><span class="s">'back to normal now'</span><span class="p">)</span></pre></div>
+</td>
+</tr>
 </table>
 </div>
 </section>

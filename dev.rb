@@ -195,7 +195,7 @@ END_NOTE
       command ';pt'
       name '**Shell** Prepare a squash commit or PR title message'
       notes <<END_NOTE
-      The currentticket is specific to our JIRA naming and assumes I am working
+      The `currentticket` is specific to our JIRA naming and assumes I am working
       on a branch that starts with the ticket ID as the first 9 characters (like
       `COCO-1234`).
 
@@ -398,7 +398,6 @@ END_NOTE
       command 'lastbranches'
       command 'lb'
       command 'currentbranch'
-      command 'currentticket'
 
       name 'Last branch matching'
       notes <<END_NOTE
@@ -490,6 +489,18 @@ END_NOTE
       command 'args'
       name 'Show arguments at this point'
       notes 'Dumps out the current functions arguments passed'
+    end
+
+    entry do
+      command 'ipdb'
+      command 'web_pdb'
+      name 'Nicer debuggers'
+      notes <<END_NOTE
+      I typically use `ipdb` to drop into an ipython/juputer console but thereʾs
+      also [`web_pdb`](https://github.com/romanvm/python-web-pdb) which gives a
+      UI with watch variables and the like. I should try and use that more when
+      doing a more complex bit of debugging.
+END_NOTE
     end
 
   end
@@ -716,6 +727,27 @@ END_NOTE
 
   category do
     id 'Docker'
+  end
+
+  category do
+    id 'Useful Python Libraries'
+
+    entry do
+      command 'colorama'
+      name '[Color console output](https://github.com/tartley/colorama) using ascii escape codes'
+      notes <<END_NOTE
+
+      ```python
+      from colorama import Fore, Back, Style
+      print(Fore.RED + 'some red text')
+      print(Back.GREEN + 'and with a green background')
+      print(Style.DIM + 'and in dim text')
+      print(Style.RESET_ALL)
+      print('back to normal now')
+      ```
+END_NOTE
+    end
+
   end
 
   category do

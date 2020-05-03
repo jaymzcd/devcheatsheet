@@ -211,11 +211,13 @@ often used essentials.
 * wrap plus
 * babel
 * djanerio
+* ColorHighlight - abandoned but the version available works fine
 
 Not used so much but handy to have available rather than other tooling:
 
 * emmet
 * hexviewer
+* PackageDev - for creating custom syntax definitions
 
 ## Emmet clash
 
