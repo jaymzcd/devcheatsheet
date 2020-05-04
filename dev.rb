@@ -809,6 +809,36 @@ END_NOTE
 END_NOTE
     end
 
+    entry do
+      command 'touch file.{txt,html,doc}'
+      command 'cp file.{txt,py}'
+      name '**Shell** Curly braces expanded'
+      notes <<END_NOTE
+      The items within the braces are expanded and iterated over so in the `touch`
+      command example what happens is we get a `file.txt`, `file.html` etc created.
+      The copy example effectively says `cp file.txt file.py`.
+
+      Lots more info available on [Linux.com](https://www.linux.com/topic/desktop/all-about-curly-braces-bash/).
+
+      Very handy when making several directories at once or creating a lot of
+      `__init__.py` files for folders where you might instinctively do
+      a `for; do...`
+
+      ```sh
+      touch {admin,models,views,tests}/__init__.py
+      mkdir -p {static,media/uploads}
+
+      tree -d
+      .
+      ├── media
+      │   └── uploads
+      └── static
+
+      3 directories
+      ```
+END_NOTE
+    end
+
   end
 
   category do

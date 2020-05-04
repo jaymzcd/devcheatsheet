@@ -25,7 +25,7 @@ Mainly actual work applications
 
 ```
 tmux exa docker-compose awscli node tig fasd direnv pyenv gpg pgcli p7zip
-doxygen diff-so-fancy git-gui most ripgrep unrar jq watch fswatch
+doxygen diff-so-fancy git-gui most ripgrep unrar jq watch fswatch tree
 ```
 
 Usually useful to have for more general stuff

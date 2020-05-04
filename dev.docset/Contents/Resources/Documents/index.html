@@ -58,6 +58,7 @@
 <link href='//dash_ref_Terminals &amp; Tmux/Entry/iTerm Open command history/0'>
 <link href='//dash_ref_Terminals &amp; Tmux/Entry/Repeat command at an interval/0'>
 <link href='//dash_ref_Terminals &amp; Tmux/Entry/Repeat command on file system changes/0'>
+<link href='//dash_ref_Terminals &amp; Tmux/Entry/Shell Curly braces expanded/0'>
 <link href='//dash_ref/Category/Regular Expressions/1'>
 <link href='//dash_ref_Regular Expressions/Entry/Non-capturing group/0'>
 <link href='//dash_ref/Category/grep, ripgrep &amp; related/1'>
@@ -917,6 +918,30 @@ if we run:</p>
 <pre class="highlight shell">watchfile dev.rb cheatset generate dev.rb</pre>
 <p>Then <code>@:2</code> becomes <em><code>cheatset generate dev.rb</code></em>.</p>
 </div>
+</td>
+</tr>
+<tr id='//dash_ref_Terminals &amp; Tmux/Entry/Shell Curly braces expanded/0'>
+<td class='command'>
+<p>
+<code>touch file.{txt,html,doc}</code>
+</p>
+<p>
+<code>cp file.{txt,py}</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p><strong>Shell</strong> Curly braces expanded</p>
+</div>
+<div class='notes'><p>The items within the braces are expanded and iterated over so in the <code>touch</code>
+command example what happens is we get a <code>file.txt</code>, <code>file.html</code> etc created.
+The copy example effectively says <code>cp file.txt file.py</code>.</p>
+
+<p>Lots more info available on <a href="https://www.linux.com/topic/desktop/all-about-curly-braces-bash/">Linux.com</a>.</p>
+
+<p>Very handy when making several directories at once or creating a lot of
+<code>__init__.py</code> files for folders where you might instinctively do
+a <code>for; do...</code></p>
+<pre class="highlight shell"><span class="nb">touch</span> <span class="o">{</span>admin,models,views,tests<span class="o">}</span>/__init__.py&#x000A;<span class="nb">mkdir</span> <span class="nt">-p</span> <span class="o">{</span>static,media/uploads<span class="o">}</span>&#x000A;&#x000A;tree <span class="nt">-d</span>&#x000A;<span class="nb">.</span>&#x000A;├── media&#x000A;│   └── uploads&#x000A;└── static&#x000A;&#x000A;3 directories</pre></div>
 </td>
 </tr>
 </table>
