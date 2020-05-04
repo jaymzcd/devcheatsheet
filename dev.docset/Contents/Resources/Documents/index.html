@@ -33,6 +33,7 @@
 <link href='//dash_ref_Jupyter/Entry/Show all cell output/0'>
 <link href='//dash_ref_Jupyter/Entry/Include HTML, LaTeX, Images and more/0'>
 <link href='//dash_ref_Jupyter/Entry/Pandas Show all table rows (or a custom limit)/0'>
+<link href='//dash_ref_Jupyter/Entry/Simple interactive slider/0'>
 <link href='//dash_ref_Jupyter/Entry/Create a clearable input widget that updates the display/0'>
 <link href='//dash_ref/Category/Testing/1'>
 <link href='//dash_ref_Testing/Entry/Watch a test/0'>
@@ -50,6 +51,7 @@
 <link href='//dash_ref_PDB &amp; Debugging/Entry/Nicer debuggers/0'>
 <link href='//dash_ref/Category/Terminals &amp; Tmux/1'>
 <link href='//dash_ref_Terminals &amp; Tmux/Entry/tmux Capture scrollback to file/0'>
+<link href='//dash_ref_Terminals &amp; Tmux/Entry/Redirect stdout%2Fstderr to %2Fdev%2Fnull/0'>
 <link href='//dash_ref_Terminals &amp; Tmux/Entry/tmux Session aliases/0'>
 <link href='//dash_ref_Terminals &amp; Tmux/Entry/tmux Focus pane/0'>
 <link href='//dash_ref_Terminals &amp; Tmux/Entry/tmux Swap session/0'>
@@ -139,12 +141,15 @@
 <li>my professional life which is mainly full stack work with a focus towards
 backends written in Python. I tend to cover everything from debugging,
 front end work in React/Vue/vanilla, scripting, ops - really anything
-technical in a variety of langauges, platforms and styles.</li>
+technical in a variety of languages, platforms and styles.</li>
 <li>my mathematics work. Iʾve recently completed a BSc with the Open University
 and am now working towards a Masters with a 50-50 split across applied and
 pure disciplines. I do a lot of my study work using Python (sympy, scipy etc)
 and typeset everything in LaTeX (using <a href="https://www.lyx.org/">Lyx</a>)</li>
-<li>my personalizations to defaults on operating systems, shells etc.</li>
+<li>my personalizations to defaults on operating systems, shells etc. I try to
+aim for consistency so heavily lean on cross platform tooling or modified
+key bindings and command line utilities so that I have roughly the same
+tool chain be it Mac, Linux, Android, Windows or whatever else.</li>
 </ul>
 
 <p>I have remapped some of the default key bindings that I use a lot which is
@@ -471,6 +476,19 @@ cell with a &quot;narrative&quot; style.</p>
 <div class='notes'><pre class="highlight python"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>&#x000A;&#x000A;<span class="n">pd</span><span class="p">.</span><span class="n">set_option</span><span class="p">(</span><span class="s">'display.height'</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>&#x000A;<span class="n">pd</span><span class="p">.</span><span class="n">set_option</span><span class="p">(</span><span class="s">'display.max_rows'</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>&#x000A;<span class="n">pd</span><span class="p">.</span><span class="n">set_option</span><span class="p">(</span><span class="s">'display.max_columns'</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>&#x000A;<span class="n">pd</span><span class="p">.</span><span class="n">set_option</span><span class="p">(</span><span class="s">'display.width'</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span></pre></div>
 </td>
 </tr>
+<tr id='//dash_ref_Jupyter/Entry/Simple interactive slider/0'>
+<td class='command'>
+<p>
+<code>interact</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Simple interactive slider</p>
+</div>
+<div class='notes'><p>See below about how to ensure that <code>ipywidgets</code> is actually enabled.</p>
+<pre class="highlight python"><span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span>&#x000A;&#x000A;<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>&#x000A;    <span class="k">return</span> <span class="n">x</span>&#x000A;<span class="n">interact</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">10</span><span class="p">);</span></pre></div>
+</td>
+</tr>
 <tr id='//dash_ref_Jupyter/Entry/Create a clearable input widget that updates the display/0'>
 <td class='command'>
 <p>
@@ -502,7 +520,8 @@ a counter and display of multiple items which can then be cleared.</p>
 <pre class="highlight shell">jupyter nbextension <span class="nb">enable</span> <span class="nt">--py</span> widgetsnbextension</pre>
 <p>For Jupyter <em>Lab</em> first
 <a href="https://jupyterlab.readthedocs.io/en/stable/user/extensions.html#using-the-extension-manager">enable the experimental manager</a>
-and then just click install (probably the top package listed).</p>
+and then just click install (probably the top package listed). Then build
+and wait until complete.</p>
 
 <p>The basic technique is:</p>
 
@@ -760,6 +779,22 @@ Terminals & Tmux
 <div class='notes'><p>Here the <em>1000</em> signified the number lines back to copy. Use <code>^B</code> to
 enable the command input and then:</p>
 <pre class="highlight shell">:capture-pane <span class="nt">-S</span> <span class="nt">-1000</span>&#x000A;:save-buffer ~/log.txt</pre></div>
+</td>
+</tr>
+<tr id='//dash_ref_Terminals &amp; Tmux/Entry/Redirect stdout%2Fstderr to %2Fdev%2Fnull/0'>
+<td class='command'>
+<p>
+<code>&gt; /dev/null 2&gt;&amp;1</code>
+</p>
+<p>
+<code>;null</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Redirect stdout/stderr to <code>/dev/null</code></p>
+</div>
+<div class='notes'><p>Never quite remember this exactly right, hence the KM text macro</p>
+</div>
 </td>
 </tr>
 <tr id='//dash_ref_Terminals &amp; Tmux/Entry/tmux Session aliases/0'>

@@ -9,7 +9,7 @@ uuid: 5EC9686E-C22D-482F-9134-6BA364D940B1
 scope: cheatset.rb
 
 # https://www.sublimetext.com/docs/3/scope_naming.html
-# Scopes: <sublime path>/Packages/ayu/ayu-mirage.sublime-color-scheme
+# 
 
 contexts:
   prototype:
@@ -34,16 +34,16 @@ contexts:
       scope: constant.numeric.cheatset.rb
 
   sections:
-    - match: '\b(id|notes|name|cheatsheet|title|docset|keyword|introduction|docset_file_name)\b'
+    - match: '\b(category|notes|name|cheatsheet|title|docset|keyword|introduction|docset_file_name)\b'
       scope: variable.language.cheatset.rb
 
   commands:
-    - match: '\b(command)\b'
-      scope: constant.character.cheatset.rb
+    - match: '\bcommand (.+)\b'
+      scope: entity.name.function.cheatset.rb
 
   categories:
-    - match: '\bcategory\b'
-      scope: meta.diff.cheatset.rb
+    - match: '\bid (.+)\b'
+      scope: entity.name.type.cheatset.rb
 
   entries:
     - match: '\bentry\b'
@@ -54,7 +54,7 @@ contexts:
       scope: string.cheatset.rb
 
   herdoc:
-    - match: '\b(END_(NOTE|INTRO))\b'
+    - match: '\b(END_\w+)\b'
       scope: invalid.cheatset.rb
 
   comments:

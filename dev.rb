@@ -359,6 +359,7 @@ END_NOTE
       interact(f, x=10);
       ```
 END_NOTE
+    end
 
     entry do
       command 'widgets.Button'
@@ -495,7 +496,7 @@ END_NOTE
       After tests run using the `;ptw` you can get a report from the command
       line using `coverage report`.
 END_NOTE
-  end
+    end
 
   end
 
@@ -700,6 +701,13 @@ END_NOTE
       :save-buffer ~/log.txt
       ```
 END_NOTE
+    end
+
+    entry do
+      command '> /dev/null 2>&1'
+      command ';null'
+      name 'Redirect stdout/stderr to `/dev/null`'
+      notes 'Never quite remember this exactly right, hence the KM text macro'
     end
 
     entry do
