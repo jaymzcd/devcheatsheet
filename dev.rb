@@ -1091,6 +1091,58 @@ END_NOTE
       )
 
       console.print(table)
+      ```
+END_NOTE
+    end
+
+    entry do
+      command 'tkinter'
+      name 'Simple GUI using `tkinter`'
+      notes <<END_NOTE
+
+      There are some issues with getting tkinter to work with pyenv by default.
+      See [this post](https://stackoverflow.com/a/60469203) for a fix.
+
+      ```python
+      import re
+      import requests
+      from tkinter import Tk, Label, Button, Entry, END
+
+      class FetchGui:
+
+          def __init__(self, master):
+
+              self.master = master
+              master.title('A simple GUI to fetch links')
+
+              self.url = Entry(master)
+              self.url.insert(END, 'http://getcoconut.com/')
+              self.url.pack()
+
+              self.label = Label(master, text="Status Code")
+              self.label.pack()
+
+              self.content = Label(master, text="Extracted content...")
+              self.content.pack()
+
+              self.fetch_button = Button(master, text="Fetch", command=self.fetch)
+              self.fetch_button.pack()
+
+              self.close_button = Button(master, text="Quit", command=master.quit)
+              self.close_button.pack()
+
+          def fetch(self):
+              resp = requests.get(self.url.get())
+              self.label.config(text=resp.status_code)
+              found = re.findall('<a[^>]*?>(.+)</a>', resp.content.decode('utf-8'))
+              self.content.config(text='\\n'.join(found))
+
+
+      if __name__ == '__main__':
+          root = Tk()
+          gui = FetchGui(root)
+          root.mainloop()
+      ```
 END_NOTE
     end
 

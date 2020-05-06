@@ -346,6 +346,27 @@ by hand. It just works. Go with that these days!
 npm install -g @vue/cli
 ```
 
+## TKInter with Pyenv
+
+There's some (long standing!) issues with this out of the box annoyingly.
+
+* https://stackoverflow.com/a/60469203
+* https://github.com/pyenv/pyenv/issues/1375
+* https://github.com/pyenv/pyenv/issues/94
+
+```sh
+
+brew install tcl-tk
+
+env \
+  PATH="$(brew --prefix tcl-tk)/bin:$PATH" \
+  LDFLAGS="-L$(brew --prefix tcl-tk)/lib" \
+  CPPFLAGS="-I$(brew --prefix tcl-tk)/include" \
+  PKG_CONFIG_PATH="$(brew --prefix tcl-tk)/lib/pkgconfig" \
+  CFLAGS="-I$(brew --prefix tcl-tk)/include" \
+  PYTHON_CONFIGURE_OPTS="--with-tcltk-includes='-I$(brew --prefix tcl-tk)/include' --with-tcltk-libs='-L$(brew --prefix tcl-tk)/lib -ltcl8.6 -ltk8.6'" \
+  pyenv install 3.8.2
+```
 
 # Shell
 
