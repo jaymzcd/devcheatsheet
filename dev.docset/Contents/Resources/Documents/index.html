@@ -98,6 +98,7 @@
 <link href='//dash_ref_Useful Python Libraries/Entry/Color console output using ascii escape codes/0'>
 <link href='//dash_ref_Useful Python Libraries/Entry/Rich command line formatting with markdown, bbcode et al/0'>
 <link href='//dash_ref_Useful Python Libraries/Entry/Simple GUI using tkinter/0'>
+<link href='//dash_ref_Useful Python Libraries/Entry/TQDM Progress bar for iterables/0'>
 <link href='//dash_ref/Category/SQL/1'>
 <link href='//dash_ref_SQL/Entry/Windowing/0'>
 <link href='//dash_ref/Category/Math: LaTeX &amp; Symbolic Algebra/1'>
@@ -111,6 +112,7 @@
 <link href='//dash_ref_OS X specific/Entry/Copy &amp; paste buffer access from terminal/0'>
 <link href='//dash_ref_OS X specific/Entry/Brightness down%2Fup by 3 steps/0'>
 <link href='//dash_ref_OS X specific/Entry/Volume down%2Fup by 3 steps/0'>
+<link href='//dash_ref_OS X specific/Entry/Switch between app windows/0'>
 <link href='//dash_ref/Category/Media conversion/1'>
 <link href='//dash_ref_Media conversion/Entry/ffmpeg extract slice of video/0'>
 <link href='//dash_ref_Media conversion/Entry/ffmpeg remove audo/0'>
@@ -485,11 +487,19 @@ cell with a &quot;narrative&quot; style.</p>
 <p>
 <code>interact</code>
 </p>
+<p>
+<code>interact_manual</code>
+</p>
 </td>
 <td class='description'>
 <div class='name'><p>Simple interactive slider</p>
 </div>
 <div class='notes'><p>See below about how to ensure that <code>ipywidgets</code> is actually enabled.</p>
+
+<ul>
+<li><a href="https://ipywidgets.readthedocs.io/en/latest/examples/Widget%20List.html">Widget List</a></li>
+<li>The <code>_manual</code> version will show a button to actually run it</li>
+</ul>
 <pre class="highlight python"><span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">interact</span>&#x000A;&#x000A;<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>&#x000A;    <span class="k">return</span> <span class="n">x</span>&#x000A;<span class="n">interact</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">10</span><span class="p">);</span></pre></div>
 </td>
 </tr>
@@ -518,7 +528,8 @@ cell with a &quot;narrative&quot; style.</p>
 This recepie is a bit beyond a trival &quot;input/output&quot; and provides
 a counter and display of multiple items which can then be cleared.</p>
 
-<p>⚠️ This requires that the widgets extension has been enabled first!</p>
+<p>⚠️ This requires that the widgets extension has been enabled first!
+🤚 Consider the much simpler <code>interact_manual</code> if requirements are not as strict</p>
 
 <p>For notebooks:</p>
 <pre class="highlight shell">jupyter nbextension <span class="nb">enable</span> <span class="nt">--py</span> widgetsnbextension</pre>
@@ -1376,6 +1387,23 @@ See <a href="https://stackoverflow.com/a/60469203">this post</a> for a fix.</p>
 <pre class="highlight python"><span class="kn">import</span> <span class="nn">re</span>&#x000A;<span class="kn">import</span> <span class="nn">requests</span>&#x000A;<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">Tk</span><span class="p">,</span> <span class="n">Label</span><span class="p">,</span> <span class="n">Button</span><span class="p">,</span> <span class="n">Entry</span><span class="p">,</span> <span class="n">END</span>&#x000A;&#x000A;<span class="k">class</span> <span class="nc">FetchGui</span><span class="p">:</span>&#x000A;&#x000A;    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">master</span><span class="p">):</span>&#x000A;&#x000A;        <span class="bp">self</span><span class="p">.</span><span class="n">master</span> <span class="o">=</span> <span class="n">master</span>&#x000A;        <span class="n">master</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'A simple GUI to fetch links'</span><span class="p">)</span>&#x000A;&#x000A;        <span class="bp">self</span><span class="p">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="n">master</span><span class="p">)</span>&#x000A;        <span class="bp">self</span><span class="p">.</span><span class="n">url</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">END</span><span class="p">,</span> <span class="s">'http://getcoconut.com/'</span><span class="p">)</span>&#x000A;        <span class="bp">self</span><span class="p">.</span><span class="n">url</span><span class="p">.</span><span class="n">pack</span><span class="p">()</span>&#x000A;&#x000A;        <span class="bp">self</span><span class="p">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">master</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">"Status Code"</span><span class="p">)</span>&#x000A;        <span class="bp">self</span><span class="p">.</span><span class="n">label</span><span class="p">.</span><span class="n">pack</span><span class="p">()</span>&#x000A;&#x000A;        <span class="bp">self</span><span class="p">.</span><span class="n">content</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">master</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">"Extracted content..."</span><span class="p">)</span>&#x000A;        <span class="bp">self</span><span class="p">.</span><span class="n">content</span><span class="p">.</span><span class="n">pack</span><span class="p">()</span>&#x000A;&#x000A;        <span class="bp">self</span><span class="p">.</span><span class="n">fetch_button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">master</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">"Fetch"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">fetch</span><span class="p">)</span>&#x000A;        <span class="bp">self</span><span class="p">.</span><span class="n">fetch_button</span><span class="p">.</span><span class="n">pack</span><span class="p">()</span>&#x000A;&#x000A;        <span class="bp">self</span><span class="p">.</span><span class="n">close_button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">master</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">"Quit"</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">master</span><span class="p">.</span><span class="n">quit</span><span class="p">)</span>&#x000A;        <span class="bp">self</span><span class="p">.</span><span class="n">close_button</span><span class="p">.</span><span class="n">pack</span><span class="p">()</span>&#x000A;&#x000A;    <span class="k">def</span> <span class="nf">fetch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>&#x000A;        <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">url</span><span class="p">.</span><span class="n">get</span><span class="p">())</span>&#x000A;        <span class="bp">self</span><span class="p">.</span><span class="n">label</span><span class="p">.</span><span class="n">config</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">resp</span><span class="p">.</span><span class="n">status_code</span><span class="p">)</span>&#x000A;        <span class="n">found</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="s">'&lt;a[^&gt;]*?&gt;(.+)&lt;/a&gt;'</span><span class="p">,</span> <span class="n">resp</span><span class="p">.</span><span class="n">content</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">))</span>&#x000A;        <span class="bp">self</span><span class="p">.</span><span class="n">content</span><span class="p">.</span><span class="n">config</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s">'</span><span class="si">\</span><span class="se">n</span><span class="s">'</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">found</span><span class="p">))</span>&#x000A;&#x000A;&#x000A;<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>&#x000A;    <span class="n">root</span> <span class="o">=</span> <span class="n">Tk</span><span class="p">()</span>&#x000A;    <span class="n">gui</span> <span class="o">=</span> <span class="n">FetchGui</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>&#x000A;    <span class="n">root</span><span class="p">.</span><span class="n">mainloop</span><span class="p">()</span></pre></div>
 </td>
 </tr>
+<tr id='//dash_ref_Useful Python Libraries/Entry/TQDM Progress bar for iterables/0'>
+<td class='command'>
+<p>
+<code>tqdm</code>
+</p>
+<p>
+<code>trange</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p><a href="https://tqdm.github.io/">TQDM</a> Progress bar for iterables</p>
+</div>
+<div class='notes'><p>Makes a smart progress bar for loops. Can show the remaining. Supported
+on the CLI and for piping commands through as well as Jupyter Notebooks.</p>
+<pre class="highlight python"><span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>&#x000A;<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)):</span>&#x000A;    <span class="p">...</span></pre></div>
+</td>
+</tr>
 </table>
 </div>
 </section>
@@ -1567,6 +1595,19 @@ OS X specific
 <div class='name'><p>Volume down/up by 3 steps</p>
 </div>
 <div class='notes'><p>Similar reasoning to the brightness shortcut.</p>
+</div>
+</td>
+</tr>
+<tr id='//dash_ref_OS X specific/Entry/Switch between app windows/0'>
+<td class='command'>
+<p>
+<code>CMD + `</code>
+</p>
+</td>
+<td class='description'>
+<div class='name'><p>Switch between app windows</p>
+</div>
+<div class='notes'><p>This is a standard shortcut but I never remember this one (and starting using contexts specifically to work around this).</p>
 </div>
 </td>
 </tr>

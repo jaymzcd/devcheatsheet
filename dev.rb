@@ -347,9 +347,14 @@ END_NOTE
 
     entry do
       command 'interact'
+      command 'interact_manual
+      '
       name 'Simple interactive slider'
       notes <<END_NOTE
       See below about how to ensure that `ipywidgets` is actually enabled.
+
+      * [Widget List](https://ipywidgets.readthedocs.io/en/latest/examples/Widget%20List.html)
+      * The `_manual` version will show a button to actually run it
 
       ```python
       from ipywidgets import interact
@@ -376,6 +381,7 @@ END_NOTE
       a counter and display of multiple items which can then be cleared.
 
       ⚠️ This requires that the widgets extension has been enabled first!
+      🤚 Consider the much simpler `interact_manual` if requirements are not as strict
 
       For notebooks:
 
@@ -1146,6 +1152,25 @@ END_NOTE
 END_NOTE
     end
 
+    entry do
+      command 'tqdm'
+      command 'trange'
+      name '[TQDM](https://tqdm.github.io/) Progress bar for iterables'
+      notes <<END_NOTE
+
+      Makes a smart progress bar for loops. Can show the remaining. Supported
+      on the CLI and for piping commands through as well as Jupyter Notebooks.
+
+      ```python
+      from tqdm import tqdm
+      for i in tqdm(range(1000)):
+          ...
+      ```
+
+END_NOTE
+
+    end
+
   end
 
   category do
@@ -1287,6 +1312,12 @@ END_NOTE
       command 'OPTION + SHIFT + 9'
       name 'Volume down/up by 3 steps'
       notes 'Similar reasoning to the brightness shortcut.'
+    end
+
+    entry do
+      command 'CMD + `'
+      name 'Switch between app windows'
+      notes 'This is a standard shortcut but I never remember this one (and starting using contexts specifically to work around this).'
     end
 
   end
